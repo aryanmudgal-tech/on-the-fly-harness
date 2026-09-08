@@ -58,23 +58,17 @@ Two terms recur. "Context engineering" (Manus, Anthropic, Cognition, mid-2025) i
 |---|---|---|
 | Dec 2024 | Anthropic, Building effective agents [1] | Successful teams "weren't using complex frameworks... building with simple, composable patterns"; workflows (predefined code paths) vs agents (model directs its own process) |
 | Apr 2025 | Thorsten Ball, How to build an agent [33] | Full code-editing agent in 315 lines; "There is no moat" [34] |
-| Apr 2025 | OpenAI, A practical guide to building agents [22] | Start with a single agent; manager vs decentralized hand-off patterns; layered guardrails |
-| Apr 2025 | Anthropic, Claude Code best practices (now docs) [15] | CLAUDE.md, explore-plan-code-commit, give Claude a way to verify |
 | Jun 2025 | Anthropic, multi-agent research system [2] | Orchestrator-workers beat single Opus 4 by 90.2% on internal research eval; ~15x tokens; token use explains 80% of variance |
 | Jun 2025 | Cognition, Don't build multi-agents [28] | Share full context; "actions carry implicit decisions"; parallel writers produce fragile output |
 | Jul 2025 | Manus, Context engineering lessons [32] | KV-cache hit rate is "the single most important metric"; be the boat, not the pillar |
-| Sep 2025 | Anthropic, Writing effective tools for agents [3] | Consolidate tools, namespace them, prefer search over list, evaluate tools with the model |
 | Sep 2025 | Anthropic, Effective context engineering [4] | Find "the smallest set of high-signal tokens"; compaction, tool-result clearing, memory |
-| Sep 2025 | Anthropic, Claude Agent SDK post [5] | Loop is "gather context, take action, verify work, repeat"; Claude Code SDK renamed Agent SDK |
-| Oct 2025 | Anthropic, Agent Skills [6][19] | Progressive disclosure: ~100 tokens per skill until triggered; open spec Dec 2025 |
 | Nov 2025 | Anthropic, Effective harnesses for long-running agents [7] | Initializer agent + coding agent; feature list, progress file, git as memory across context resets |
 | Feb 2026 | Mitchell Hashimoto (via [37][38]) | "Harness engineering": every agent mistake becomes a permanent environmental fix |
 | Feb–Mar 2026 | OpenAI, Harness engineering [21][27] | ~1M lines, zero written by hand, 5 months, ~1,500 PRs, 3 engineers growing to 7 |
 | Mar 2026 | Anthropic, Harness design for long-running app development [8] | Planner / generator / evaluator; harness components encode expiring assumptions |
 | Apr 2026 | Anthropic, Managed Agents [12] | Hosted "pre-built, configurable agent harness"; sessions, environments, events |
 | Apr 2026 | Cognition, Multi-agents: what's actually working [29] | Single-threaded writes; three patterns; swarms are a distraction |
-| Apr 2026 | Anthropic, April 23 postmortem [10] | Quality regression from reasoning-effort downgrade, caching bug, verbosity prompt (via [53]) |
-| Aug 2026 | OpenAI, Codex as a platform [23] | Three tiers: `codex exec`, SDK, app-server (JSON-RPC threads, turns, events, approvals) |
+| Aug 2026 | OpenAI, Codex as a platform [23][24][25] | Three tiers: `codex exec`, SDK, app-server (JSON-RPC threads, turns, events, approvals); CLI repo is Apache-2.0 |
 | Sep 2026 | Patel, Zaharia et al., "Model eats the stack" [45] | Compensating layers get absorbed; what persists is "persistent semantic context" |
 
 ## 3. Principles practitioners agree on
