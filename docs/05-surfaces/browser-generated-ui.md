@@ -15,7 +15,7 @@ Sourcing note. This session's egress proxy allowed github.com, code.claude.com, 
 
 - **Generated UI is real and shipping as an output surface, not as a control surface.** Google reports raters preferred generated interactive pages over markdown 83% of the time, "when ignoring generation speed" (Apr 2026 paper; sibling doc) [15]. Claude Code now publishes live pages from a terminal session (beta June 2026; connector-backed live data, public links and editor roles July 2026, primary) [1][2]. The page runtime has since grown a shared realtime database, viewer presence and a page-side call to Claude (in-session capability roster, Sep 2026) [34], so a generated page can be a small stateful app. Nothing in the record lets a non-technical person *operate a long-running agent* through an interface the agent generated; the pages show results, tune parameters, hold shared state, and collect comments.
 - **The industry split into two camps on safety.** Anthropic and OpenAI let the model write arbitrary HTML and JavaScript, then contain it (sandboxed `*.claudeusercontent.com` origin, strict CSP, four allowed CDNs; MCP Apps iframes with JSON-RPC over `postMessage`) [1][5][6]. Google's A2UI forbids generated code: agents emit declarative JSON against a client-owned component catalog, "safe like data, but expressive like code" [10]. The choice is between novelty with a blast-radius problem and consistency with an expressiveness ceiling.
-- **The protocol layer converged fast.** MCP Apps, co-authored by Anthropic and OpenAI on the foundations of MCP-UI and the ChatGPT Apps SDK, reached a stable spec on Jan 26, 2026 and is supported by Claude, ChatGPT, VS Code, Goose and Postman (primary) [5][6][7]. AG-UI (CopilotKit, MIT, ~15.8k stars) and A2UI (Google-originated, Apache-2.0, ~16.3k stars, v1.0 release candidate) cover the developer-app side; A2UI can ride over AG-UI or A2A transports [9][10].
+- **The protocol layer converged fast.** MCP Apps, co-authored by Anthropic and OpenAI on the foundations of MCP-UI and the ChatGPT Apps SDK, reached a stable spec on Jan 26, 2026, was merged as a final MCP extension (SEP-1865) on Jan 28, 2026, and is supported by Claude, ChatGPT, VS Code, Goose and Postman (primary) [5][6][7][32]. The core 2026-07-28 revision keeps Apps as an extension inside a formal extensions framework, and the `ext-apps` SDK reached 2.0.0 on Sep 8, 2026 on the split MCP SDK 2.0 packages (primary) [6][32]. AG-UI (CopilotKit, MIT, ~15.8k stars) and A2UI (Google-originated, Apache-2.0, ~16.3k stars, v1.0 release candidate) cover the developer-app side; A2UI can ride over AG-UI or A2A transports [9][10].
 - **Maturity is uneven and mostly pre-1.0.** AG-UI's core package is at 0.0.59 on npm; A2UI is v0.9.1 with v1.0 as a release candidate and calls itself an "early public preview"; Flutter's GenUI SDK is "highly experimental"; Claude Design inside Claude Code is a "research preview" (Aug 17–21, 2026), as is the standalone Claude Design, an Anthropic Labs preview since Apr 17, 2026 (secondary) [3][9][10][11][33]. The Vercel AI SDK is the exception: its `ai` package is at 7.0.94 with three maintained major lines (npm, Sep 8, 2026) [12].
 - **Trust affordances exist but are thin.** Claude marks a public artifact `Content is user-generated and unverified.`, routes any live data call through the *viewer's* connectors after a per-viewer consent, and forbids public sharing of connector-backed pages; in auto mode "the classifier reviews the publish instead of prompting you, so Claude can publish a page without you seeing a prompt" [1]. Since v2.1.257 Claude Code treats an artifact written by someone else, when it reads one, as untrusted content and "flags embedded instructions rather than relaying them" [4]. MCP Apps' own launch post tells users to "proactively and thoroughly vet MCP servers before connecting them" [5].
 - **"UI on demand" builders are where non-technical demand is proven, but the UI they build is the deliverable, not the harness.** Lovable reported $500M annualized revenue and "1 million new projects a week" (June 2026) and raised $400M at $13.3B (Aug 12, 2026); Replit Agent 4 (Mar 2026) produces "mobile apps, presentations, data visualisations" (sibling docs, secondary) [17][18][19]. Manus, the general agent with a visible cloud computer, reached ~$100M ARR and sold to Meta for more than $2B (Dec 30, 2025) before China ordered the deal unwound (Apr 27, 2026) [22][23].
@@ -238,4 +238,86 @@ Three costs, only one quantified. *Tokens*: Anthropic says styled pages cost mor
 28. OpenAI, "Introducing canvas", https://openai.com/index/introducing-canvas/, Oct 3, 2024 (not fetched; date confirmed by Slashdot, Medium and OpenAI's X post in search snippets); OpenAI, "Introducing apps in ChatGPT and the new Apps SDK", https://openai.com/index/introducing-apps-in-chatgpt/, Oct 6, 2025 (not fetched; partners confirmed by VentureBeat, TechCrunch, Storyboard18 and trendingtopics.eu snippets); OpenAI Apps SDK docs, https://developers.openai.com/apps-sdk/ (blocked); openai/apps-sdk-ui, https://github.com/openai/apps-sdk-ui, read Sep 8, 2026 (primary)
 29. Claude Code docs, "Skills" ("Skills in Cowork and cloud sessions"), https://code.claude.com/docs/en/skills, read Sep 2026 (primary)
 30. Claude Code docs, "Platforms and integrations", https://code.claude.com/docs/en/platforms, read Sep 2026 (primary)
-31. Claude Platform release notes (Managed Agents Apr 8, 2026; Skills API xlsx/pptx/docx Jun 9, 2026; computer use out of beta Aug 19, 2026), https://platform.claude.com/docs/en/release-notes/overview, read Sep 2026 (primary)
+31. Claude Platform release notes (Agent Skills with pptx/xlsx/docx/PDF skills Oct 16, 2025; Managed Agents public beta Apr 8, 2026; Claude Fable 5 Jun 9, 2026; Skills API and computer use out of beta Aug 19, 2026; Compliance API transcripts for Claude for Microsoft 365 sessions in Excel, PowerPoint, Word and Outlook Aug 26, 2026), https://platform.claude.com/docs/en/release-notes/overview, re-read Sep 8, 2026 (primary). Claude for Excel's Oct 2025 preview, Jan 2026 Pro rollout and the 2026 GA of Excel, PowerPoint and Word with Outlook in beta come from search snippets (ClaudeKit, ETIH, Refonte Learning, Orbilon); pages blocked
+32. MCP blog, "The 2026-07-28 Specification", https://blog.modelcontextprotocol.io/posts/2026-07-28/, Jul 28, 2026, and "The New MCP Roadmap", https://blog.modelcontextprotocol.io/posts/mcp-roadmap/, Aug 22, 2026 (primary); modelcontextprotocol/modelcontextprotocol SEP-1865 (merged Jan 28, 2026; labels extension, final), https://github.com/modelcontextprotocol/modelcontextprotocol/issues/1865, and `docs/specification/2026-07-28/changelog.mdx` (primary); npm registry `@modelcontextprotocol/ext-apps` version history (0.0.1 Dec 8, 2025; 1.0.0 Jan 26, 2026; 2.0.0 Sep 8, 2026), read Sep 8, 2026 (primary)
+33. rohitg00/awesome-claude-design README (Claude Design, Apr 17, 2026, citing anthropic.com/news/claude-design-anthropic-labs), https://github.com/rohitg00/awesome-claude-design, read Sep 8, 2026 (secondary); VentureBeat, "Anthropic just launched Claude Design, an AI tool that turns prompts into prototypes and challenges Figma" (headline in search results; page blocked)
+34. Claude Code bundled skill `artifact-capabilities` (v2.1.265, runtime contract 0.2.42), read in this session Sep 8, 2026 (primary): capability roster `artifact`, `db`, `downloads`, `mcp`, `room`, `sample`, `self`; `user` and `assets` not in this account's roster; the Artifact tool description in the same session
+
+## Verification notes (2026-09-08)
+
+Method. This pass ran 11 web searches before the session's search cap (200) was reached, then used only direct fetches to hosts the proxy allows (code.claude.com, platform.claude.com, github.com, raw.githubusercontent.com, registry.npmjs.org, blog.modelcontextprotocol.io, microsoft.com) plus the `artifact-capabilities` skill bundled with this Claude Code build. "Confirmed" means read on a primary page or supported by two or more independent search snippets; "corrected" means the draft was wrong and has been fixed in place; "unverified" means no reachable source settled it. Claims taken from sibling documents that ran their own verification pass are marked "not re-checked here" and counted as unverified for this document.
+
+| # | Claim in the draft | Result | Evidence |
+|---|---|---|---|
+| 1 | Artifacts launched with Claude 3.5 Sonnet, June 2024 | Confirmed (June 20, 2024) | SiliconANGLE, Constellation Research snippets [26] |
+| 2 | AI-powered artifacts bill the viewer's subscription | Confirmed | Claude Help Center snippet: "Usage counts against each user's own Claude subscription limits, not yours" [27] |
+| 3 | AI-powered artifacts launched June 2025 | Unverified | one snippet says July 2025; anthropic.com and support.claude.com blocked [27] |
+| 4 | Claude Code artifacts: beta June 2026 on Team and Enterprise; now Pro, Max, Team, Enterprise | Confirmed | code.claude.com week 25 and artifacts page (primary) [1][2] |
+| 5 | In-session tool advertises a shared database and per-viewer private data; docs say no backend | Corrected, made specific | `artifact-capabilities` skill: `db`, `room`, `sample`, `downloads`, `artifact`, `mcp`, `self` available; `user` (per-viewer private data) and `assets` not in this account's roster; docs unchanged [34] |
+| 6 | Cowork Artifact-tool fix in v2.1.257 | Corrected | CHANGELOG: the Cowork fix is v2.1.248; v2.1.257 is the untrusted-read fix [4] |
+| 7 | `/design` research preview, Aug 17–21, 2026 | Confirmed | week 34; artifacts page (v2.1.234) [3] |
+| 8 | Claude Design standalone launch unknown | Confirmed (secondary): Apr 17, 2026, Anthropic Labs research preview | awesome-claude-design README citing Anthropic's post; VentureBeat headline [33] |
+| 9 | Google generative UI announced with Gemini 3, Nov 2025, shipped as Dynamic View | Confirmed (Nov 18, 2025) | 9to5google, ppc.land, ediscoverytoday snippets; Google Research blog title [15] |
+| 10 | 83% preference over markdown; PAGEN dataset | Confirmed | arXiv 2604.09577 listing snippets (also "at least comparable" to experts in 50% of cases) [15] |
+| 11 | Qualifier "when ignoring generation speed" | Unverified | arXiv, alphaxiv, Hugging Face and Semantic Scholar all blocked [15] |
+| 12 | I/O 2026: generative UI free in Search that summer | Unverified | Search Engine Journal blocked [15] |
+| 13 | A2UI announced Dec 2025 | Confirmed (Dec 15, 2025) | MarkTechPost, Analytics Vidhya and other snippets [10] |
+| 14 | A2UI v0.9.1 stable, v1.0 release candidate, v0.8 legacy, "early public preview", Apache-2.0, ~16.3k stars; Flutter GenUI "highly experimental" on A2UI v0.9 | Confirmed | google/A2UI and flutter/genui READMEs (primary) [10][11] |
+| 15 | ChatGPT apps launched Oct 6, 2025 with Canva, Figma, Spotify, Zillow | Confirmed and completed | VentureBeat, TechCrunch, Storyboard18, trendingtopics.eu snippets: Booking.com, Canva, Coursera, Expedia, Figma, Spotify, Zillow [28] |
+| 16 | ChatGPT canvas launched Oct 2024 | Confirmed (Oct 3, 2024, beta for Plus and Team) | Slashdot, OpenAI's X post, Medium snippets [28] |
+| 17 | Canvas renders React and HTML previews | Unverified | no reachable source [28] |
+| 18 | Claude for Excel research preview, Oct 2025 | Confirmed (about 1,000 Max, Team and Enterprise testers) | Refonte Learning, Orbilon, AI Tool Analysis, Pillitteri snippets [31] |
+| 19 | Skills API gained .xlsx/.pptx/.docx on June 9, 2026 | Corrected | platform.claude.com release notes: those skills shipped with Agent Skills on Oct 16, 2025; June 9, 2026 is the Claude Fable 5 launch; Skills API out of beta Aug 19, 2026 [31] |
+| 20 | Notion Agent Sept 2025 | Confirmed (Sept 18, 2025, Notion 3.0) | Notion release-note title, TechCrunch snippet [21] |
+| 21 | Notion custom agents "later in 2025" | Corrected | Notion 3.3 Custom Agents, Feb 2026, free until May 3, 2026 (AlternativeTo, Notioners snippets) |
+| 22 | Figma Make announced at Config May 2025, built on Claude | Confirmed (May 7, 2025; Claude 3.7 Sonnet) | Figma blog titles, CMSWire, Medium snippets |
+| 23 | Manus split-view interface | Unverified | manus.im and press blocked [22] |
+| 24 | Manus: ~$100M ARR, Meta deal Dec 30, 2025, unwind Apr 27, 2026 | Not re-checked here | sibling doc's own verification pass; CNBC blocked [22][23] |
+| 25 | AG-UI first published April 2025 | Corrected | npm: 0.0.27 on Apr 30, 2025; public announcement May 12, 2025 (copilotkit.ai blocked; search snippets) [9] |
+| 26 | AG-UI 0.0.59, MIT, ~15.8k stars, integrations list | Confirmed (the partner is LangChain, not LangGraph) | ag-ui README and npm (primary) [9] |
+| 27 | MCP Apps spec 2026-01-26 stable; eight hosts; ~2.8k stars | Confirmed | ext-apps README (primary); MCP-UI's README lists a different set (adds LibreChat and Smithery; ChatGPT via adapter) [6][7] |
+| 28 | ext-apps "npm 2.0.0 after 19 releases" | Corrected | npm: 33 versions; 1.0.0 Jan 26, 2026; 2.0.0 Sep 8, 2026 on MCP SDK 2.0; SEP-1865 merged Jan 28, 2026 [6][32] |
+| 29 | Vercel `ai` 7.0.93, `ai-v5` 5.0.253, `ai-v6` 6.0.277 | Corrected (stale by one patch) | npm on Sep 8, 2026: 7.0.94, 5.0.253, 6.0.278; `ai@7.0.0` Jun 25, 2026 [12] |
+| 30 | AI SDK 7 announced at Vercel Ship, June 17, 2026 | Not re-checked here | sibling doc (Business Wire); vercel.com blocked [19] |
+| 31 | tldraw make-real archived Feb 20, 2026 | Confirmed | GitHub archive notice (primary) [13] |
+| 32 | Copilot Cowork GA with metered billing, June 2026 | Confirmed, made specific | Microsoft 365 blog, June 16, 2026: $0.01 per Copilot Credit; Anthropic models (primary) [25] |
+| 33 | Cowork: preview Jan 12, GA Apr 9, web and mobile Jul 7, 2026 | Not re-checked here | sibling doc; Simon Willison, VentureBeat, TechCrunch blocked [24] |
+| 34 | AgentKit Agent Builder wind-down June 3, 2026 | Not re-checked here | sibling doc, two secondary sites; openai.com blocked [24] |
+| 35 | Claude Managed Agents Apr 8, 2026 | Confirmed (public beta) | platform.claude.com release notes; Notion as launch customer unverified [31] |
+| 36 | Lovable, Replit and Bolt revenue and funding figures | Not re-checked here | sibling docs' own verification tables (TechCrunch, Bloomberg, Replit, Sacra); press blocked [17][18][19] |
+| 37 | Star counts and desktop-doc quotes (Bolt ~16.5k; three tabs; "same underlying engine"; Dispatch keeps spreadsheet work in Cowork; Browser pane) | Confirmed | GitHub pages; code.claude.com desktop and platforms pages [4][20][30] |
+
+Totals: 20 confirmed, 7 corrected, 10 unverified (5 with no reachable source, 5 not re-checked here because they rest on sibling documents and blocked press).
+
+### Refresh notes
+
+Added in this pass, with sources:
+
+- The artifact runtime's capability roster (`artifact`, `db`, `downloads`, `mcp`, `room`, `sample`, `self`; `user` and `assets` absent for this account) and the fact that the public docs describe none of it [34] (TL;DR, 2.1, 3.3, 3.4, thesis).
+- Week 29 (Jul 13–17, 2026): connector calls at view time, public links, editor roles, artifacts from Claude Tag; week 28 (Jul 6–10, 2026): the in-app browser on Desktop [2].
+- Changelog facts: v2.1.248 Cowork fix, v2.1.257 untrusted-read fix, newest version 2.1.265 [4]; Dispatch is Pro and Max only [4].
+- Claude Design standalone: Apr 17, 2026, Anthropic Labs research preview, plans, exports, `DESIGN.md` [33].
+- MCP: SEP-1865 final on Jan 28, 2026; the 2026-07-28 core revision with a formal extensions framework that keeps Apps as an extension; `ext-apps` 2.0.0 on MCP SDK 2.0 (Sep 8, 2026); "close to half-a-billion downloads a month"; MCP-UI's host list [6][7][32].
+- AG-UI: npm and announcement chronology; in-progress integrations (AWS Bedrock Agents, OpenAI Agents SDK, Cloudflare Agents) and Langroid; a reported $27M raise, flagged [9].
+- Vercel: `ai` 7.0.94, `ai@7.0.0` on Jun 25, 2026, `v0-sdk` 0.16.7 [12].
+- tldraw v5.0.0 (May 6, 2026) and v5.4.0 (Sep 2, 2026) [14].
+- OpenAI's `apps-sdk-ui` component library (May 2026) and ChatKit 1.9.0 [8][28].
+- Claude for Microsoft 365 (Excel, PowerPoint, Word, Outlook) per the Aug 26, 2026 release note, GA and beta status per snippets, and the corrected Skills chronology [31].
+- Copilot Cowork GA specifics: Jun 16, 2026, $0.01 per Copilot Credit, Opus 4.8 and Sonnet 4.6 [25].
+- Notion 3.3 Custom Agents (Feb 2026); Figma Make's seat expansion and the "From Claude Code to Figma" flow (snippets only).
+- Bolt's "Claude Agent" default (Aug 2026) and Microsoft marketplace listing (May 2026); Replit's reported $240M ARR (sibling doc) [19].
+
+Conclusions: the TL;DR and both verdicts stand. Two sentences were added to say that a generated page can now hold shared state and call Claude, which moves it from "output" toward "small app" but not to a control surface for the agent; the MCP Apps recommendation for developers is now backed by a final extension and a 2.0 SDK.
+
+Sources that could not be opened (egress blocked): anthropic.com, claude.com, support.claude.com, openai.com, developers.openai.com, blog.google, research.google, developers.googleblog.com, arxiv.org, alphaxiv.org, huggingface.co, api.semanticscholar.org, export.arxiv.org, notion.com, manus.im, figma.com, lovable.dev, replit.com, vercel.com, techcrunch.com, cnbc.com, venturebeat.com, 9to5google.com, alternativeto.net, claudekit.io, copilotkit.ai, latent.space, simonwillison.net, searchenginejournal.com, wikipedia.org. GitHub's release atom feeds returned nothing through the proxy, so release dates come from npm and GitHub HTML pages. Weeks 35 and 36 of the Claude Code "What's new" digest return 404, so week 34 is the latest digest.
+
+Remaining doubts:
+
+- Whether the artifact capability roster differs by plan or feature flag, and whether `user` and `assets` are live for any account; the docs describe none of it.
+- The AI-powered artifacts launch month (June or July 2025).
+- The paper's speed qualifier, the I/O 2026 claim, and any 2026 change to Gemini's Dynamic View (nothing reachable).
+- The 2026 state of ChatGPT's app directory, monetization and canvas; whether ChatGPT hosts MCP Apps natively (ext-apps lists it, MCP-UI says an adapter is needed).
+- GA dates for Claude in PowerPoint, Word and Outlook, and the "cell-level explanations" description of Claude for Excel.
+- Shortcut, Paradigm and Manus's interface: no reachable source.
+- The Vercel Ship date, Cowork's three dates and the AgentKit wind-down rest on sibling documents.
+- tldraw v5.4.1 is on GitHub (Sep 8, 2026) but not yet on npm at the time of the check; Sep 2, 2026 for v5.4.0 is the npm publish date.
