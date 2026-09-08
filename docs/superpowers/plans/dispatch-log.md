@@ -30,3 +30,7 @@ Action: both workflows stopped (the only in-flight agents had started minutes ea
 ## Blocked at 20:00: account spend limit
 
 The first of the re-dispatched agents (Task 18, non-technical users) terminated with an API error: the account has hit its monthly spend limit (HTTP 429; the message says the session limit resets at 23:20 UTC and the monthly limit is raised at claude.ai/settings/usage). Every other running agent is expected to fail the same way. Everything on disk is committed. To resume: raise the limit, then re-dispatch the agents listed as "running" in the 19:55 table, skipping any whose document already carries "Status: verified with notes".
+
+## Resumed at 20:07
+
+The limit was lifted. Five agents from the 19:55 batch survived and finished or are finishing (protocols research, OS-level research, developer-users research, independent-harness fact-check, non-technical-startups fact-check). Ten agents that had died were re-dispatched: research for runtime and safety and for non-technical users; fact-checks for labs, academic and industry; verify-and-refresh for adoption evidence, non-technical labs, messaging, generated UI and voice. Note: two documents (adoption evidence, developer users) were first written by workflow agents that outlived the stop signal and had no web search; their verify-and-refresh passes compensate.
