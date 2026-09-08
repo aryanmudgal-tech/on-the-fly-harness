@@ -13,19 +13,19 @@ Sourcing note: the research proxy blocked anthropic.com, openai.com, cognition.a
 
 ## TL;DR
 
-- The loop itself is agreed to be trivial. Thorsten Ball shipped a working code-editing agent in 315 lines in April 2025: "It's an LLM, a loop, and enough tokens" [33][34]. Nobody in the record disputes this.
-- Everything else is contested, and the vocabulary shifted from "context engineering" (2025) to "harness engineering" (Feb–Mar 2026, coined by Mitchell Hashimoto and adopted days later by OpenAI) [37][38][21].
-- Shared principles: keep the loop simple and start with one agent; treat the context window as the scarce resource; give the agent a real computer (filesystem, shell) rather than bespoke tools; close the loop with a verification signal the agent can read; use deterministic guardrails (hooks, linters, sandboxes) instead of prose instructions; keep a single writer when several agents act [1][22][15][28][29].
-- Biggest reversal: Cognition said "don't build multi-agents" (June 2025) and then published "what's actually working" (April 2026): single-threaded writes, extra agents contribute "intelligence rather than actions", swarms are "mostly a distraction" [28][29][30].
-- Evidence that the harness matters measurably: LangChain moved 52.8% to 66.5% on Terminal-Bench 2.0 with the same model [50]; Anthropic's own 2026 trends report says harness setup alone swings benchmarks by 5+ points [56]; Anthropic's April 2026 Claude Code postmortem traced a quality regression to harness-side changes, not the model [10].
-- Evidence that harnesses thin out: Anthropic now writes that every harness component "assumes the model can't do something; those assumptions expire" and tells builders to "re-simplify on model upgrades" [8][9][11]; a Sept 2026 Stanford/Berkeley-affiliated paper argues the model is "eating the stack" [45].
-- Both are true at once, because "the harness" is two layers: a compensation layer (planning scaffolds, prompt tricks, tool-selection crutches) that expires with each model release, and an environment/authority layer (permissions, sandboxes, memory, org context, verification signals, surfaces) that does not. The labs are productizing the second layer themselves: Claude Agent SDK (Sept 2025), Managed Agents (April 2026), Codex app-server "open agent harness" (Aug 2026) [5][12][23].
+- The loop is agreed to be trivial. Thorsten Ball shipped a code-editing agent in 315 lines in April 2025: "It's an LLM, a loop, and enough tokens" [33][34].
+- Everything else is contested. The vocabulary moved from "context engineering" (2025) to "harness engineering" (Feb–Mar 2026, coined by Mitchell Hashimoto, adopted by OpenAI days later) [37][38][21].
+- Shared principles: start with one simple loop; treat the context window as the scarce resource; give the agent a real computer (filesystem, shell); close the loop with a verification signal the agent can read; prefer deterministic guardrails (hooks, linters, sandboxes) to prose; keep a single writer when several agents act [1][22][15][28][29].
+- Biggest reversal: Cognition's "don't build multi-agents" (June 2025) became "what's actually working" (April 2026): single-threaded writes, extra agents contribute "intelligence rather than actions", swarms are "mostly a distraction" [28][29][30].
+- The harness matters measurably: LangChain went from 52.8% to 66.5% on Terminal-Bench 2.0 with the same model [50]; Anthropic's 2026 trends report says harness setup alone swings benchmarks by 5+ points [56]; Anthropic's April 2026 postmortem traced a Claude Code regression to harness-side changes, not the model [10].
+- Harnesses also thin out: Anthropic now writes that every harness component "assumes the model can't do something; those assumptions expire" and tells builders to "re-simplify on model upgrades" [8][9][11]; a Sept 2026 paper argues the model is "eating the stack" [45].
+- Both hold because "the harness" is two layers: a compensation layer (planning scaffolds, prompt tricks, tool-selection crutches) that expires with each model release, and an environment/authority layer (permissions, sandboxes, memory, org context, verification, surfaces) that does not. The labs are productizing the second layer themselves: Claude Agent SDK (Sept 2025), Managed Agents (April 2026), Codex app-server (Aug 2026) [5][12][23].
 
 ## 1. Vocabulary for a newcomer
 
 Analogy: a language model is a brilliant contractor with no hands, no memory past the current conversation, and no keys to the building. The harness is the hands, the notebook, and the key ring. The loop is the daily stand-up: the contractor says what to do next, someone does it and reports back, and the contractor decides again.
 
-Precisely: Simon Willison's definition, now the common one, is that an agent "runs tools in a loop to achieve a goal" (Sept 2025) [35]. Anthropic's docs describe Claude Code as "the agentic harness around Claude: it provides the tools, context management, and execution environment that turn a language model into a capable coding agent" [14]. A June 2026 arXiv paper names the necessary parts as "agent loop, tool interface, context management, and control mechanisms" [48], which maps onto this program's seven-part definition with runtime and surface folded into "control".
+Precisely: Simon Willison's definition, now the common one, is that an agent "runs tools in a loop to achieve a goal" (Sept 2025) [35]; a coding agent "acts as a harness for an LLM" (Feb 2026, via secondary) [36]. Anthropic's docs describe Claude Code as "the agentic harness around Claude: it provides the tools, context management, and execution environment that turn a language model into a capable coding agent" [14]. A June 2026 arXiv paper names the necessary parts as "agent loop, tool interface, context management, and control mechanisms" [48][49], which maps onto this program's seven-part definition with runtime and surface folded into "control".
 
 ```
             ┌──────────────────────── harness ────────────────────────┐
@@ -50,7 +50,7 @@ while True:
     messages = compact_if_needed(messages)        # context management
 ```
 
-Two terms recur. "Context engineering" (Manus, Anthropic, Cognition, mid-2025) is deciding what goes into the window each turn. "Harness engineering" (Hashimoto, OpenAI, early 2026) is the wider practice: "improving agent output by shaping the environment around it, [which] holds a chosen model and coding agent constant as a black box" [54].
+Two terms recur. "Context engineering" (Manus, Anthropic, Cognition, mid-2025) is deciding what goes into the window each turn. "Harness engineering" (Hashimoto, OpenAI, early 2026) is the wider practice: "improving agent output by shaping the environment around it, [which] holds a chosen model and coding agent constant as a black box" [54]. OpenAI's harness lead Joe Gershenson: "The harness is how the model interacts with the world and how we are able to express the model capabilities" (2026) [26].
 
 ## 2. The record: who said what, when
 
@@ -175,15 +175,15 @@ The uncomfortable corollary for a startup: the environment layer is where the la
 
 ## 7. Open questions and unverified claims
 
-- The OpenAI harness-engineering post's exact publication date and author were not verified (late Feb or early March 2026 inferred from Latent Space coverage on 3–4 March 2026) [21][37]. Its numbers (1M lines, ~1,500 PRs, 3 to 7 engineers, 5 months, 3.5 PRs per engineer per day) are from secondary summaries [27].
-- Cherny's "removed more than 80% of the system prompt" and "my job is to write loops" quotes come from secondary write-ups of talks; no primary transcript was read [57][43][44].
+- The OpenAI harness-engineering post's exact date and author were not verified (late Feb or early Mar 2026, inferred from Latent Space coverage on 3–4 Mar 2026) [21][37]. Its numbers (1M lines, ~1,500 PRs, 3 to 7 engineers, 5 months, 3.5 PRs per engineer per day) are from secondary summaries [27].
+- Cherny's "removed more than 80% of the system prompt" and "my job is to write loops" come from secondary write-ups of talks; no primary transcript was read [57][43][44].
 - The "22 points harness vs 1 point model" SWE-bench claim has no locatable primary source [58].
-- Cursor's posts (self-driving codebases; long-running agents preview; the GPT-5.x rewiring; Composer 2 on 19 March 2026) were read only via secondary summaries; dates are approximate [39][40].
-- Managed Agents pricing ($0.08 per session-hour) and early customers (Notion, Rakuten, Sentry, Asana) are from secondary coverage of the April 2026 launch [59]; the docs page read directly confirms the product shape but not the price [12].
-- The Anthropic April 23, 2026 postmortem, the April 2026 "3 patterns" post, the 2026 trends report, Fowler's essay and the LangChain Nemotron post were read only through the awesome-harness-engineering list's one-line summaries [53].
-- Manus's claim of rebuilding its framework four times, and the December 2025 reports of Meta acquiring Manus's parent company, were not verified in this pass.
-- Open question: is there any published case of a model-agnostic third-party harness matching a lab's first-party harness on a hard benchmark with the same model? None was found.
-- Open question: what does harness engineering for non-developers look like? No practitioner post in scope addresses it.
+- Cursor's posts (self-driving codebases; long-running agents preview; GPT-5.x rewiring; Composer 2, reportedly 19 Mar 2026) were read only via secondary summaries; dates are approximate [39][40].
+- Managed Agents pricing ($0.08 per session-hour) and early customers (Notion, Rakuten, Sentry, Asana) come from secondary launch coverage [59]; the docs page read directly confirms the product shape, not the price [12].
+- The April 23, 2026 postmortem, the April 2026 "3 patterns" post, the 2026 trends report, Fowler's essay and the LangChain Nemotron post were read only through the awesome-harness-engineering list's one-line summaries [53].
+- Manus's claim of rebuilding its framework four times, and December 2025 reports of Meta acquiring Manus's parent company, were not verified in this pass.
+- Open: is there any published case of a model-agnostic third-party harness matching a lab's first-party harness on a hard benchmark with the same model? None was found.
+- Open: what does harness engineering for non-developers look like? No practitioner post in scope addresses it.
 
 ## Sources
 

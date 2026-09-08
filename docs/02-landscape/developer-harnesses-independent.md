@@ -21,7 +21,7 @@
 
 ## A short glossary for readers new to agents
 
-Analogy first, then the precise version.
+Analogy first, then the precise version. Skip this if you already run agents.
 
 - **Harness.** The car around the engine. Precisely: everything that turns a model API call into a working agent, split here into seven parts (loop, tools, context/memory, permissions, runtime, surface, orchestration).
 - **BYOK (bring your own key).** You buy fuel directly from the refinery; the car maker does not resell it. Precisely: the harness lets you paste your own API key for Anthropic, OpenAI, Google or a local model, and bills nothing for tokens.
@@ -58,8 +58,7 @@ Independent harnesses have layered themselves. The CLIs became engines; protocol
 ### Cursor (Anysphere)
 
 - **Surface.** A VS Code fork, plus a CLI, a web app, and, since Cursor 3 (released April 2, 2026 per multiple secondary write-ups; cursor.com was unreachable for direct verification), an *Agents window* that runs many agents in parallel across local checkouts, worktrees, cloud sandboxes and SSH hosts from one pane ([9], [10]).
-- **Loop and orchestration.** Cloud Agents run in Cursor-hosted environments; the May 13, 2026 changelog adds multi-repo support, Dockerfile-defined environments, version history with rollback and scoped secrets; August 2026 removed the requirement for a connected GitHub account; September 2026 added *self-hosted machines* so tool execution stays inside a customer's network (Cursor changelog, [1]). *Automations* (scheduled or triggered runs) require Pro (secondary, [10]).
-- **Own harness as a product.** The Cursor SDK (April 2026) lets developers "build agents with the same runtime, harness, and models that power Cursor", in TypeScript, running in the desktop app, CLI and web app; the June 2026 SDK release added custom stores, custom tools and auto-review ([1], [2]).
+- **Loop, runtime and orchestration.** Cloud Agents run in Cursor-hosted environments; the May 13, 2026 changelog adds multi-repo support, Dockerfile-defined environments, rollback and scoped secrets; August 2026 dropped the GitHub-account requirement; September 2026 added *self-hosted machines* so tool execution stays inside a customer's network (Cursor changelog, [1]). *Automations* (scheduled or triggered runs) require Pro (secondary, [10]). The Cursor SDK (April 2026) exposes "the same runtime, harness, and models that power Cursor" in TypeScript; the June 2026 SDK release added custom stores, custom tools and auto-review ([1], [2]).
 - **Models.** Frontier models from Anthropic, OpenAI and Google, plus Cursor's in-house *Composer* line. Composer 2 shipped March 19, 2026; on March 22, 2026 Cursor confirmed, after a user found the model id `kimi-k2p5-rl-0317-s515-fast` in API responses, that it was built on Moonshot's Kimi K2.5 with Cursor's own RL on top; Cursor said only about a quarter of the compute came from the base model ([11]). Composer 2.5 followed in May 2026 (secondary, [1]).
 - **Permissions and runtime.** Cloud agents run in isolated environments; local agents run in the editor. Detail on approval policies is not covered by sources reachable here (unverified).
 - **Business and status.** Closed source; subscription tiers reported as Hobby (free), Pro $20, Pro+ $60, Ultra $200, Teams $40/user, Enterprise (secondary, [10]). Cursor acquired Continue on June 16, 2026 (The New Stack, [12]). One secondary source claims SpaceX agreed to buy Cursor for $60B around the same time; I could not verify that against any primary or major outlet and treat it as **unverified**.
@@ -106,7 +105,7 @@ Independent harnesses have layered themselves. The CLIs became engines; protocol
 
 - Apache-2.0, ~36k stars. A YC S23 company that pivoted in 2025 to "Continuous AI" (a `cn` CLI and PR checks defined in markdown). Cursor acquired it on June 16, 2026; the repository is now read-only after a final 2.0.0 release that removed telemetry and authentication; cloud data was deleted after July 15, 2026 ([12], [35]).
 
-## Family 2: terminal-first harnesses
+## Family 2: terminal-first and cloud-first harnesses
 
 ### Amp (Amp Inc, formerly Sourcegraph)
 
@@ -119,6 +118,13 @@ Independent harnesses have layered themselves. The CLIs became engines; protocol
 
 - Closed source. Droid is "the agent-native development platform" across CLI, web, Slack/Teams, Linear/Jira, mobile, VS Code, JetBrains and Zed, with TypeScript and Python SDKs, a GitHub Action for reviews and security scans, and a plugins marketplace ([41]). Any model, BYOK. Factory topped Terminal-Bench in September 2025 at 58.75% when it raised a $50M Series B ([42]); it raised a $150M Series C at a $1.5B valuation led by Khosla on April 16, 2026 ([43], [44]). Autonomy levels and a headless `droid exec` mode are documented at docs.factory.ai (unreachable here; unverified detail).
 - **Distinctive.** Sells one agent runtime across the widest surface list of any independent, with the enterprise as the buyer.
+
+### OpenHands (All Hands AI, formerly OpenDevin)
+
+- MIT, ~87k stars (2026-09-08). Now "the self-hosted developer control center for coding agents and automations": installable via npm, Docker or source, with an *Agent Canvas* web frontend, a CLI, GitHub and Slack integrations, and a hosted OpenHands Cloud plus an enterprise tier ([92]). Docker is the recommended sandbox; without it the README warns "the agent will have full access to your filesystem" ([92]).
+- The *Software Agent SDK* (MIT, ~1k stars) is a separate repository with Python, TypeScript and REST APIs, an Agent Server that runs workspaces locally or in ephemeral Docker/Kubernetes environments, file-editor, terminal and task-tracker tools, MCP, and multi-agent delegation with configurable security profiles; it powers both the CLI and the cloud ([93]).
+- **Models.** Any LLM, bring your own. **Funding.** $5M seed (September 2024) and a reported $18.8M Series A (November 2025) (secondary, [94]).
+- **Distinctive.** The only harness here that open-sources the whole stack (SDK, sandbox server, web control plane) under MIT and sells hosting on top.
 
 ### opencode (SST / Anomaly)
 
