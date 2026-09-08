@@ -26,3 +26,7 @@ Action: both workflows stopped (the only in-flight agents had started minutes ea
 | 19:55 | Verify: Tasks 3, 4, 11, 12 | Direct fact-checkers | running |
 | 19:55 | Verify and refresh: Tasks 6, 7, 13, 14, 15 | Direct fact-checkers with refresh mandate | running |
 | 19:10 to 19:50 | Verify: Tasks 1, 2, 19 | Direct fact-checkers | done, committed |
+
+## Blocked at 20:00: account spend limit
+
+The first of the re-dispatched agents (Task 18, non-technical users) terminated with an API error: the account has hit its monthly spend limit (HTTP 429; the message says the session limit resets at 23:20 UTC and the monthly limit is raised at claude.ai/settings/usage). Every other running agent is expected to fail the same way. Everything on disk is committed. To resume: raise the limit, then re-dispatch the agents listed as "running" in the 19:55 table, skipping any whose document already carries "Status: verified with notes".
