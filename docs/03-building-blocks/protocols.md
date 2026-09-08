@@ -330,7 +330,7 @@ Proposed on Sep 3, 2024 by Jeremy Howard (Answer.AI), `/llms.txt` is a Markdown 
 62. Codex Cursor-hooks migration source, https://github.com/openai/codex/blob/main/codex-rs/external-agent-migration/src/hooks_cur.rs, Sep 2026.
 63. Codex docs, "Configuration" (lifecycle hooks, managed hooks), https://github.com/openai/codex/blob/main/docs/config.md, Sep 2026.
 64. OpenAI Codex plugins repository README, https://github.com/openai/plugins, Sep 2026.
-65. OpenAI Codex plugins directory (73 plugins), https://github.com/openai/plugins/tree/main/plugins, Sep 2026.
+65. OpenAI Codex plugins directory (65 plugins listed in the marketplace file; see source 102), https://github.com/openai/plugins/tree/main/plugins, Sep 2026.
 66. The New Stack, "OpenAI's Codex gets plugins", https://thenewstack.io/openais-codex-gets-plugins/, Mar 2026 (secondary).
 67. WinBuzzer, "OpenAI Launches Plugin Marketplace for Codex with Enterprise Controls", https://winbuzzer.com/2026/03/31/openai-launches-plugin-marketplace-codex-enterprise-controls-xcxwbn/, Mar 2026 (secondary).
 68. AP2 repository README, https://github.com/google-agentic-commerce/AP2, Sep 2026.

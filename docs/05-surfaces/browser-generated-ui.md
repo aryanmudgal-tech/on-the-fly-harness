@@ -196,22 +196,22 @@ Three costs, only one quantified. *Tokens*: Anthropic says styled pages cost mor
 
 ## Open questions and unverified claims
 
-- Claude artifacts' June 2024 origin, AI-powered artifacts (June 2025) and viewer-side billing: from memory, anthropic.com blocked [26][27].
-- The in-session Artifact tool advertises a shared database and per-viewer private data; the public docs say a page has no backend. Which is current is unverified [1].
-- Claude Design's standalone launch date, availability and pricing: unverified (claude.com blocked). Only its research preview inside Claude Code (Aug 17–21, 2026) is primary [3].
-- ChatGPT canvas dates and features, Apps SDK launch partners, and the 2026 status of app monetization and the directory: from memory or sibling docs; openai.com blocked [25][28].
-- Google generative UI facts (Nov 2025 launch, 83% preference, PAGEN, I/O 2026 statement) are taken from the sibling academic document, which cited the arXiv paper and blog; not re-read here [15]. A2UI's Dec 2025 announcement date is from memory.
-- Manus's interface description, Notion Agent and custom-agent launch dates, Claude for Excel's Oct 2025 preview, Shortcut's Excel World Championship claim, Paradigm's product and funding, and Figma Make's May 2025 launch and Claude dependency are unverified; all sites blocked.
+- Claude artifacts' June 20, 2024 origin and viewer-side billing for AI-powered artifacts are now confirmed by search snippets; the AI-powered artifacts launch month (June or July 2025) is still unverified, anthropic.com blocked [26][27].
+- Resolved: the in-session capability roster confirms a shared database, presence, downloads and page-side sampling for this account, and shows per-viewer private data (`user`) and file assets gated off it; the public docs lag [1][34]. Open: which plans or flags gate each capability.
+- Claude Design's standalone launch (Apr 17, 2026, Anthropic Labs research preview) now rests on two secondary reports; its pricing beyond plan quotas is unverified [33]. Only its research preview inside Claude Code (Aug 17–21, 2026) is primary [3].
+- ChatGPT canvas (Oct 3, 2024) and the Apps SDK launch partners are now confirmed by press snippets; canvas's React/HTML preview and the 2026 status of app monetization and the directory remain unverified, openai.com blocked [25][28].
+- Google generative UI: the Nov 18, 2025 launch, the 83% figure and PAGEN are confirmed by press and arXiv snippets; the "when ignoring generation speed" qualifier and the I/O 2026 statement could not be re-read (arXiv and Search Engine Journal blocked) [15]. A2UI's Dec 15, 2025 announcement is confirmed by three secondary reports.
+- Notion's dates (Sept 18, 2025; Custom Agents Feb 2026), Claude for Excel's Oct 2025 preview and Figma Make's May 7, 2025 launch on Claude 3.7 Sonnet are now confirmed by search snippets. Manus's interface description, Shortcut's Excel World Championship claim, Paradigm's product and funding, and the GA dates of Claude for PowerPoint, Word and Outlook remain unverified; all sites blocked.
 - Revenue figures for Lovable, Replit, Bolt, v0 and Manus are secondary (press) via sibling docs; Replit's ARR and v0's are flagged unverified there too [17][18][19].
-- AG-UI's "first published April 2025" is derived from an npm registry timestamp (1746012988) and may reflect a republish rather than the first release [9].
+- AG-UI's npm history starts at 0.0.27 on Apr 30, 2025 (registry, primary); the public announcement was May 12, 2025 (search snippets). Any pre-0.0.27 history is not on npm [9].
 - Open: does any host label generated pages as unverified other than Claude? Do any users detect wrong-but-plausible generated dashboards? What does a generated page cost in tokens at typical sizes? No source answers these.
 
 ## Sources
 
 1. Claude Code docs, "Share session output as artifacts", https://code.claude.com/docs/en/artifacts, read Sep 2026 (primary)
-2. Claude Code docs, "Week 25 · June 15–19, 2026", https://code.claude.com/docs/en/whats-new/2026-w25, Jun 2026 (primary)
+2. Claude Code docs, "Week 25 · June 15–19, 2026", https://code.claude.com/docs/en/whats-new/2026-w25, Jun 2026 (primary); "Week 29 · July 13–17, 2026" (artifacts call MCP connectors, public links, editor roles, Claude Tag), https://code.claude.com/docs/en/whats-new/2026-w29 (primary, read Sep 8, 2026); "Week 28 · July 6–10, 2026" (in-app browser on Desktop), https://code.claude.com/docs/en/whats-new/2026-w28 (primary)
 3. Claude Code docs, "Week 34 · August 17–21, 2026" (`/design` research preview), https://code.claude.com/docs/en/whats-new/2026-w34, Aug 2026 (primary)
-4. Claude Code docs, "Desktop application", https://code.claude.com/docs/en/desktop, read Sep 2026 (primary); anthropics/claude-code CHANGELOG.md v2.1.257 entry, https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md, Sep 2026 (primary)
+4. Claude Code docs, "Desktop application", https://code.claude.com/docs/en/desktop, read Sep 2026 (primary); anthropics/claude-code CHANGELOG.md v2.1.248 and v2.1.257 entries (newest version 2.1.265), https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md, re-read Sep 8, 2026 (primary); "Platforms and integrations" for the Dispatch plan note, https://code.claude.com/docs/en/platforms (primary)
 5. MCP blog, "MCP Apps: Bringing interactive UI to AI conversations", https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/, Jan 26, 2026 (primary)
 6. modelcontextprotocol/ext-apps repository and spec 2026-01-26, https://github.com/modelcontextprotocol/ext-apps, read Sep 2026 (primary); npm registry `@modelcontextprotocol/ext-apps` (2.0.0), https://registry.npmjs.org/@modelcontextprotocol/ext-apps, Sep 2026
 7. MCP-UI-Org/mcp-ui repository, https://github.com/MCP-UI-Org/mcp-ui, read Sep 2026 (primary)
@@ -219,7 +219,7 @@ Three costs, only one quantified. *Tokens*: Anthropic says styled pages cost mor
 9. ag-ui-protocol/ag-ui README and `docs/concepts/events.mdx`, https://github.com/ag-ui-protocol/ag-ui, read Sep 2026 (primary); npm registry `@ag-ui/core` (0.0.59), https://registry.npmjs.org/@ag-ui/core, Sep 2026
 10. google/A2UI repository and specification folder, https://github.com/google/A2UI, read Sep 2026 (primary)
 11. flutter/genui repository, https://github.com/flutter/genui, read Sep 2026 (primary)
-12. vercel/ai README, https://github.com/vercel/ai, read Sep 2026 (primary); npm registry `ai` (7.0.93; tags ai-v5, ai-v6), https://registry.npmjs.org/ai, Sep 2026; vercel/ai-elements, https://github.com/vercel/ai-elements, read Sep 2026; vercel/v0-sdk, https://github.com/vercel/v0-sdk, read Sep 2026
+12. vercel/ai README, https://github.com/vercel/ai, read Sep 2026 (primary); npm registry `ai` (7.0.94 on Sep 8, 2026; `ai@7.0.0` Jun 25, 2026; tags ai-v5 5.0.253, ai-v6 6.0.278), https://registry.npmjs.org/ai, read Sep 8, 2026; npm registry `v0-sdk` (0.16.7, Aug 2026); vercel/ai-elements, https://github.com/vercel/ai-elements, read Sep 2026; vercel/v0-sdk, https://github.com/vercel/v0-sdk, read Sep 2026
 13. tldraw/make-real (archived Feb 20, 2026), https://github.com/tldraw/make-real, read Sep 2026 (primary)
 14. tldraw/tldraw README and `templates/agent`, https://github.com/tldraw/tldraw, https://github.com/tldraw/tldraw/tree/main/templates/agent, read Sep 2026 (primary)
 15. Leviathan, Valevski et al., "Generative UI: LLMs are Effective UI Generators", https://arxiv.org/abs/2604.09577, Apr 2026; Google Research blog, https://research.google/blog/generative-ui-a-rich-custom-visual-interactive-user-experience-for-any-prompt/, Nov 2025; Search Engine Journal on I/O 2026 (secondary). All via `docs/04-research/academic.md`; not fetched here
