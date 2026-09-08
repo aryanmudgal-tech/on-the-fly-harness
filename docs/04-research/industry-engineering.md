@@ -115,21 +115,21 @@ The Bitter Lesson (Sutton, 2019) says general methods that scale with compute be
 
 **Evidence for thinning.**
 
-- Anthropic's March and April 2026 posts say it directly. The awesome-harness-engineering list summarizes the March post's key insight as "Every harness component assumes the model can't do something; those assumptions expire" [53][8]. The April post's three patterns are "build on known tools, remove assumptions as capabilities improve, set boundaries carefully" [9]. The companion repo instructs: "Re-simplify on model upgrades: After each model release, comment out harness pieces one at a time and see what's still load-bearing", because "newer models drift less and self-scope better" [11].
-- Cherny is reported to have cut more than 80% of Claude Code's system prompt for a new model generation with no measurable loss on coding evals (2026, via secondary; not verified against a primary transcript) [57][44].
-- Latent Space's March 2026 piece quotes Noam Brown on how reasoning models removed the "complex engineering scaffolding" earlier agent systems needed (via secondary) [37].
-- Patel, Jha, Arabzadeh, Guestrin, Stoica and Zaharia (Sept 2026): "as models continue to improve, many system layers designed to compensate for model limitations will increasingly be absorbed by the model itself"; what remains worth building is "persistent semantic context" about the environment [45].
-- Philipp Schmid's 2026 essay: "To survive the Bitter Lesson, our infrastructure (Harness) must be lightweight" (via secondary; date unverified) [41]. Hanchung Lee's May 2026 "hidden technical debt" essay argues a 2026 harness is "a 2026 artifact" and should be built so structure "can come out as easily as it went in" (via secondary; attribution of the quote not fully verified) [42].
+- Anthropic says it directly. Its March 2026 post's key insight, as summarized by the awesome-harness-engineering list: "Every harness component assumes the model can't do something; those assumptions expire" [53][8]. The April 2026 patterns: "build on known tools, remove assumptions as capabilities improve, set boundaries carefully" [9]. The companion repo: "Re-simplify on model upgrades: After each model release, comment out harness pieces one at a time and see what's still load-bearing", because "newer models drift less and self-scope better" [11].
+- Cherny is reported to have cut more than 80% of Claude Code's system prompt for a new model generation with no measurable eval loss (2026, via secondary; no primary transcript read) [57][44].
+- Latent Space's March 2026 piece cites Noam Brown on reasoning models removing the scaffolding earlier agent systems needed (via secondary) [37].
+- Patel, Jha, Arabzadeh, Guestrin, Stoica and Zaharia (Sept 2026): "many system layers designed to compensate for model limitations will increasingly be absorbed by the model itself"; what remains is "persistent semantic context" about the environment [45].
+- Philipp Schmid (2026): "To survive the Bitter Lesson, our infrastructure (Harness) must be lightweight" (via secondary; date unverified) [41]. Hanchung Lee (May 2026) argues a 2026 harness is "a 2026 artifact" whose structure should "come out as easily as it went in" (via secondary; attribution not fully verified) [42].
 
 **Evidence for the moat.**
 
-- Harness swaps move scores by more than model swaps do, at least in the short run. LangChain: 52.8% to 66.5% on Terminal-Bench 2.0 with gpt-5.2-codex held constant, moving from roughly 30th to top five [50]. Anthropic's 2026 trends report: "harness setup alone can swing benchmarks by 5+ percentage points" (via [53]) [56]. A widely repeated "22 points from the harness, 1 point from the model" SWE-bench figure circulates without a locatable primary source; treat it as unverified [58].
-- Harness changes can also break things silently. Anthropic's April 2026 postmortem attributed Claude Code quality complaints to "default reasoning-effort downgrade, a caching-optimization bug, and an overly aggressive verbosity-limiting system prompt" (via [53]) [10]. The model had not changed.
-- Vendor claims of model substitution through harness work: LangChain says harness-only tuning brought Nemotron 3 Ultra "within one point of Opus 4.8 at roughly one-tenth the cost" (July 2026; vendor claim, single benchmark) [51].
-- The labs are behaving as if the harness is valuable. Anthropic's Managed Agents sells "a pre-built, configurable agent harness that runs in managed infrastructure" at token prices plus a reported $0.08 per session-hour (April 2026; price via secondary) [12][59]. OpenAI's August 2026 post markets Codex as an "open agent harness" with three embedding tiers [23]. Cursor built a proprietary model to sit inside its harness rather than the reverse [39].
-- Academic evidence that harness and weights are coupled, which is the opposite of "thin, interchangeable wrapper": "Performance improves monotonically with harness informativeness at zero-shot", and post-training under a minimal harness "suffers drastic performance drops under stronger tool environment shifts" [46].
+- Harness swaps move scores more than model swaps, at least short term. LangChain: 52.8% to 66.5% on Terminal-Bench 2.0 with gpt-5.2-codex held constant, roughly 30th to top five [50]. Anthropic's 2026 trends report: "harness setup alone can swing benchmarks by 5+ percentage points" (via [53]) [56]. A widely repeated "22 points from the harness, 1 from the model" SWE-bench figure has no locatable primary source; treat it as unverified [58].
+- Harness changes break things silently. Anthropic's April 2026 postmortem attributed Claude Code quality complaints to a "default reasoning-effort downgrade, a caching-optimization bug, and an overly aggressive verbosity-limiting system prompt" (via [53]) [10]. The model had not changed.
+- LangChain claims harness-only tuning brought Nemotron 3 Ultra "within one point of Opus 4.8 at roughly one-tenth the cost" (July 2026; vendor claim, one benchmark) [51].
+- The labs behave as if the harness is valuable. Managed Agents sells "a pre-built, configurable agent harness that runs in managed infrastructure" at token prices plus a reported $0.08 per session-hour (April 2026; price via secondary) [12][59]. OpenAI markets Codex as an "open agent harness" with three embedding tiers (Aug 2026) [23]. Cursor built a proprietary model to sit inside its harness, not the reverse [39].
+- Harness and weights are coupled, the opposite of an interchangeable wrapper: "Performance improves monotonically with harness informativeness at zero-shot", and post-training under a minimal harness "suffers drastic performance drops under stronger tool environment shifts" [46].
 
-**Synthesis (my reading, not any vendor's).** The two camps are describing two different layers, and the word "harness" hides the split.
+**Synthesis (my reading, not any vendor's).** The camps describe two layers, and the word "harness" hides the split.
 
 ```mermaid
 flowchart TB
@@ -149,29 +149,29 @@ flowchart TB
   M[(model)] --> C --> E
 ```
 
-The thinning evidence is all about the compensation layer. The moat evidence is mostly about the environment layer: LangChain's gains came from verification loops and doom-loop middleware, OpenAI's from docs, linters and observability, Anthropic's postmortem from caching and effort settings. Even the "model eats the stack" paper carves out "persistent semantic context" as the durable part [45]. Fowler's synthesis names the same three: context engineering, architectural constraints, entropy management (via [53]) [55].
+The thinning evidence is about the compensation layer. The moat evidence is mostly about the environment layer: LangChain's gains came from verification loops and doom-loop middleware, OpenAI's from docs, linters and observability, Anthropic's postmortem from caching and effort settings. Even the "model eats the stack" paper carves out "persistent semantic context" as durable [45]. Fowler names the same three systems: context engineering, architectural constraints, entropy management (via [53]) [55].
 
-The uncomfortable corollary for a startup is that the environment layer is where the labs are now investing (Managed Agents, app-server, auto-mode classifiers, Channels, Routines), and it is also where model-specific coupling lives.
+The uncomfortable corollary for a startup: the environment layer is where the labs now invest (Managed Agents, app-server, auto-mode classifiers, Channels, Routines), and it is also where model-specific coupling lives.
 
 ## 6. What this means for the thesis
 
 **Supports.**
 
-- "The harness becomes the bottleneck" is now the stated position of both major labs, in their own words. OpenAI named the discipline; Anthropic publishes harness posts roughly quarterly and sells three harness products (Agent SDK, Managed Agents, Claude Code) [21][5][12]. Measured harness-only gains of 5 to 14 points on hard benchmarks exist [50][56].
-- "Neither CLI nor desktop app is the default" is consistent with what the vendors are building. Claude Code's docs describe one engine behind terminal, VS Code, JetBrains, desktop, web, iOS/Android, Slack, Remote Control, Channels (Telegram, Discord, iMessage, webhooks), GitHub Actions and cloud Routines: "Each surface connects to the same underlying Claude Code engine" [18][14]. OpenAI's app-server exists precisely so Codex can be embedded anywhere [23]. The surface has been decoupled from the harness; the CLI is one client among many.
-- The practitioner record says the human's job is moving from steering turns to designing environments and writing loops (Hashimoto, OpenAI, Fowler, Cherny) [38][21][55][43]. That is a different product than a chat box or a terminal, which supports "reimagine the default harness".
+- "The harness becomes the bottleneck" is now both major labs' stated position. OpenAI named the discipline; Anthropic publishes harness posts roughly quarterly and sells three harness products (Agent SDK, Managed Agents, Claude Code) [21][5][12]. Measured harness-only gains of 5 to 14 points on hard benchmarks exist [50][56].
+- "Neither CLI nor desktop app is the default" matches what vendors are building. Claude Code's docs describe one engine behind terminal, VS Code, JetBrains, desktop, web, iOS/Android, Slack, Remote Control, Channels (Telegram, Discord, iMessage, webhooks), GitHub Actions and cloud Routines: "Each surface connects to the same underlying Claude Code engine" [18][14]. OpenAI's app-server exists so Codex can be embedded anywhere [23]. Surface and harness have been decoupled; the CLI is one client among many.
+- The human's job is moving from steering turns to designing environments and writing loops (Hashimoto, OpenAI, Fowler, Cherny) [38][21][55][43]. That is a different product from a chat box or a terminal.
 
 **Contradicts.**
 
-- The loop is 300 lines and the labs prune scaffolding every model release. A startup whose value is in the compensation layer will be eaten within one or two model generations; Anthropic is telling its own customers to expect this [11][9].
-- The labs are vertically integrating the environment layer and bundling it with the model. Managed Agents, the Agent SDK's branding rules, Codex app-server, and Cursor's in-house model all point to harness-plus-model as one product [12][13][23][39]. The record contains no example of an independent, model-agnostic harness winning on quality; the counterexample (Manus, the "boat") was built on other labs' models and its writing predates the 2026 shift.
+- The loop is 300 lines and the labs prune scaffolding every model release. A startup whose value is in the compensation layer will be eaten within one or two model generations; Anthropic tells its own customers to expect this [11][9].
+- The labs are vertically integrating the environment layer with the model: Managed Agents, the Agent SDK's branding rules, Codex app-server, Cursor's in-house model [12][13][23][39]. The record contains no example of an independent, model-agnostic harness winning on quality; the counterexample (Manus, the "boat") predates the 2026 shift.
 - Harness quality is model-coupled (Cursor's rewiring, the Interplay paper, Anthropic's postmortem) [40][46][10]. A harness "for everyone" that abstracts over models may be structurally worse than each lab's own.
-- Almost all of this writing is about coding agents by developers for developers. The practitioner record contains essentially nothing on harness design for non-technical users; Managed Agents and Skills are the closest, and both are developer- or admin-facing [12][19]. The thesis's second half is untested by this literature, not supported or contradicted.
+- Almost all of this writing is about coding agents, by developers, for developers. It contains essentially nothing on harness design for non-technical users; Managed Agents and Skills are the closest and both are developer- or admin-facing [12][19]. The thesis's second half is untested by this literature, neither supported nor contradicted.
 
 **Nuance.**
 
-- The defensible position implied by the record is the environment layer without the model coupling: org-level permissions and audit, cross-vendor memory and context, verification signals, and surfaces the labs have not prioritized. That is also where the record is thinnest, which is either an opportunity or a sign that nobody has found the product.
-- "Default harness" may be the wrong frame. What practitioners describe converging on is a headless engine plus a protocol (Agent SDK, app-server, Managed Agents events) with many thin surfaces. A startup could own a surface or a protocol layer, but the record suggests owning the loop is not a business.
+- The defensible position implied by the record is the environment layer without the model coupling: org-level permissions and audit, cross-vendor memory and context, verification signals, and surfaces the labs have not prioritized. That is also where the record is thinnest: either an opportunity or a sign nobody has found the product.
+- "Default harness" may be the wrong frame. Practitioners describe convergence on a headless engine plus a protocol (Agent SDK, app-server, Managed Agents events) with many thin surfaces. A startup could own a surface or a protocol layer; the record suggests owning the loop is not a business.
 
 ## 7. Open questions and unverified claims
 
