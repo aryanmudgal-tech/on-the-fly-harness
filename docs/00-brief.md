@@ -1,6 +1,6 @@
 # Research brief: reimagining the agent harness
 
-*Started 2026-09-08. Author: aryanmudgal-tech. Status: brainstorming, questions pending.*
+*Started 2026-09-08. Author: aryanmudgal-tech. Status: questions answered, research fan-out in progress.*
 
 ## The ask
 
@@ -37,12 +37,16 @@ The author asked for no sycophancy, so these are recorded up front as things the
 - Time horizon for the recommendation: the next two to three years of model capability, not today's models only.
 - Market sizing (TAM) is deliberately out of scope until the landscape is understood.
 
-## Open questions (sent to the author)
+## Questions and answers (2026-09-08)
 
-1. Which reading of "on the fly": broad, narrow, or landscape first then the narrow thesis?
-2. What is the research for: a startup thesis, personal learning, or a build spec?
-3. How technical is the author, so the writing level can be set correctly?
-4. Which candidate "default surfaces" must be evaluated in depth: messaging apps, a browser workspace with generated UI, voice or ambient agents, OS-level integration, or others?
+| Question | Answer |
+|----------|--------|
+| Which reading of "on the fly"? | **Broad.** "Harness" means all the scaffolding around a model. "On the fly" is the repo name, not the thesis. The job is to reimagine the default harness. |
+| What is the research for? | **A startup thesis.** Research, then a recommendation and thesis memo to build or pitch on. Market sizing later. |
+| How technical is the author? | **Software engineer.** Comfortable with code, APIs and architecture diagrams; new to agents specifically. |
+| Which default surfaces to evaluate in depth? | **All four:** messaging apps; browser workspace with generated UI; voice and ambient; OS-level integration. |
+
+The design that follows from these answers is in `docs/superpowers/specs/2026-09-08-harness-research-design.md`; the execution plan is in `docs/superpowers/plans/2026-09-08-harness-research.md`.
 
 ## Proposed workstreams (draft, pending answers)
 
