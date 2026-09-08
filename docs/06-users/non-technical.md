@@ -47,7 +47,7 @@ Source: [1]; shares are of conversations, not people. Artifacts produced: answer
 
 ### 2.2 ChatGPT and Microsoft telemetry
 
-OpenAI's NBER paper (Sep 2025, via secondary): about 1.1 million sampled conversations; 700 million weekly users by July 2025; non-work up from 53% to over 70%; 49% Asking, 40% Doing, 11% Expressing; at work 56% Doing, three-quarters of it writing; two-thirds of writing requests modify supplied text; programming 4.2%; 81% of work messages are "decision support" (information, decisions, problem-solving) [2][3]. Microsoft's 105,000 Copilot chats (Feb 2026): 49% cognitive work, 19% working with people, 17% producing outputs, 15% finding information (primary) [6]; its 200,000-conversation Bing Copilot study found people mostly seek "gathering information and writing" (Jul 2025, primary) [8]. Three vendors, one picture: delegation today is retrieval, advice, editing and documents. Long-running multi-app agent work is a thin slice.
+OpenAI's NBER paper (Sep 2025, via secondary): about 1.1 million sampled conversations; 700 million weekly users by July 2025; non-work up from 53% to over 70%; 49% Asking, 40% Doing, 11% Expressing; at work 56% Doing, three-quarters of it writing; two-thirds of writing requests modify supplied text; programming 4.2%; 81% of work messages are "decision support" (information, decisions, problem-solving) [2][3]. Microsoft's 105,000 Copilot chats (Feb 2026): 49% cognitive work, 19% working with people, 17% producing outputs, 15% finding information (primary) [6]; its 200,000-conversation Bing Copilot study found people mostly seek "gathering information and writing" (Jul 2025, primary) [8]. Delegation today is retrieval, advice, editing and documents; long-running multi-app agent work is a thin slice.
 
 ## 3. Barriers
 
@@ -57,7 +57,7 @@ A Microsoft Research survey of 319 knowledge workers found that higher confidenc
 
 ### 3.2 Permissions they do not understand
 
-Twenty students using OpenClaw across five tasks of varying privacy, stakes and reversibility gave wide autonomy to file retrieval and planning, demanded confirmation for sending email, and showed "delegation regret": regret "not that the agent erred, but that it acted beyond what they would have authorized" (Jul 2026, via secondary) [10]. CMU's participants: "I was waiting for it to ask me for some more information"; "You've got to sit there and make sure that your initial prompt is perfect"; in an agent, ambiguity "can launch a time- and resource-consuming multi-step execution process ... before the user can diagnose the mismatch" (primary) [9]. Replit's agent deleted records on 1,206 executives and about 1,190 companies during a code freeze the user had declared "more than once"; the CEO called it "unacceptable and should never be possible" and shipped dev/prod separation, better rollback and a planning-only mode (Jul 2025, via secondary) [21]. Developers hit the mirror image, permission fatigue, answered by a classifier-driven "auto mode" default from Aug 14, 2026 (sibling doc) [31]. Neither a prompt per action nor no prompts fits a user who cannot evaluate the action.
+Twenty students using OpenClaw across five tasks of varying privacy, stakes and reversibility gave wide autonomy to file retrieval and planning, demanded confirmation for sending email, and showed "delegation regret": regret "not that the agent erred, but that it acted beyond what they would have authorized" (Jul 2026, via secondary) [10]. CMU's participants: "I was waiting for it to ask me for some more information"; in an agent, ambiguity "can launch a time- and resource-consuming multi-step execution process ... before the user can diagnose the mismatch" (primary) [9]. Replit's agent deleted records on 1,206 executives and about 1,190 companies during a code freeze the user had declared "more than once"; the CEO called it "unacceptable and should never be possible" and shipped dev/prod separation, better rollback and a planning-only mode (Jul 2025, via secondary) [21]. Developers hit the mirror image, permission fatigue, answered by a classifier-driven "auto mode" default from Aug 14, 2026 (sibling doc) [31]. Neither a prompt per action nor no prompts fits a user who cannot evaluate the action.
 
 ### 3.3 Data access and IT policy
 
@@ -89,20 +89,11 @@ Adoption is high, scaling is low, and the named causes are integration, workflow
 
 ## 5. HCI research on trust and delegation
 
-| Study | Design | Harness lesson |
-|---|---|---|
-| Amershi et al. (CHI 2019; HAX library, primary) [27] | 18 guidelines, 49 practitioners | G1 "make clear what the system can do", G2 "how well", G10 "scope services when in doubt", G11 "why it did what it did", G16 "convey the consequences of user actions", G17 "global controls" |
-| Zamfirescu-Pereira et al. (CHI 2023) [28] | Probe with non-experts | Non-experts cannot iterate on prompts; the harness must supply structure |
-| He, Demartini, Gadiraju (CHI 2025) [13] | 248 participants, six tasks | Plan-then-execute with user involvement works; plausible plans invite over-trust |
-| Shome, Krishnan, Das (CAIS 2026) [9] | 102 agents reviewed; 31 sessions | Usability scores 70–91 yet five barriers; fixes: elicit preferences, know your limits, adapt, planning checkpoints, non-text input, direct-manipulation iteration |
-| "Assistant or Actor?" (VL/HCC 2026) [10] | 20 students, OpenClaw | Trust is per task; approval gates for irreversible, visible actions |
-| Lee et al. (CHI 2025) [11] | 319 workers | Verification is the new work; make it cheap |
-| Dietvorst, Simmons, Massey (2018; from memory, not re-verified) [35] | Lab experiments | People use an imperfect algorithm if they can modify its output slightly: control converts distrust into use |
-| Design Principles for Human-Agent Interaction (Jun 2026) [34] | 106 papers | Older guidelines assumed "bounded and discrete tasks"; 14 agent principles |
+The agent studies in section 3 [9][10][11][13][28] sit on an older canon. Amershi et al.'s 18 guidelines (CHI 2019; HAX library, primary) name the harness features directly: G1 "make clear what the system can do", G2 "how well", G10 "scope services when in doubt", G11 "make clear why the system did what it did", G16 "convey the consequences of user actions", G17 "provide global controls" [27]. Dietvorst, Simmons and Massey found people will use an imperfect algorithm if allowed to modify its output slightly (2018; from memory, not re-verified): control converts distrust into use [35]. A 2026 synthesis of 106 papers argues the older guidelines assumed "bounded and discrete tasks" and proposes 14 principles for agents (sibling doc) [34]. CMU's six recommendations are the most concrete: elicit preferences, know your limits, adapt, add planning checkpoints, accept non-text input, and allow direct-manipulation iteration [9].
 
 ## 6. What vibe coding taught
 
-Demand is real and non-technical: "75% of Replit customers never write a single line of code" (CEO post, Feb 2025) [20]; Lovable says 80% of builders are non-technical, 45.7% founders, about 6% engineers, on a $500M run rate, unaudited (Jun 2026, via secondary) [19]; it raised at $13.3B in Aug 2026 (sibling doc) [36].
+Demand is real and non-technical: "75% of Replit customers never write a single line of code" (CEO post, Feb 2025) [20]; Lovable says 80% of builders are non-technical, 45.7% founders, about 6% engineers, on a $500M run rate, unaudited (Jun 2026, via secondary) [19].
 
 The failures are harness failures. Replit's fixes were harness parts: environment separation, rollback, plan-only mode [21]. CVE-2025-48757: "an insufficient database Row-Level Security policy in Lovable through 2025-04-15 allows remote unauthenticated attackers to read or write to arbitrary database tables of generated sites", CVSS 9.3, discovered Mar 20, patched Apr 24, published May 30, 2025 (primary) [22]; the affected-app count in the press is unverified. Studies agree: people "without software development experience" ship usable apps "at the expense of verification and maintainability" (ICSE SEIP 2026, via secondary) [23]; expertise shifts to "context management and rapid code evaluation", and trust "regulates movement along a continuum from delegation to co-creation" (2025, via secondary) [24]. The sibling verdict stands: the app is the deliverable; verification, permissions and steering are the gaps [36].
 
@@ -137,12 +128,10 @@ Agents are the first realistic accessibility layer for inaccessible software, an
 
 1. The Sep 2025 Economic Index figure that "directive" chat conversations rose from 27% to 39%: unreachable; unverified [33].
 2. The number of Lovable apps affected by CVE-2025-48757 (press: about 170 of 1,645 scanned): unverified [22].
-3. Anthropic's April 2025 Education Report figures on students: from memory, unverified.
-4. ChatGPT agent's confirmation and "watch mode" behaviors (Jul 2025): from memory, unverified.
-5. Whether high automation shares for clerical task matches reflect non-technical users or developers doing admin work: the dataset matches content, not people [1].
-6. The ChatGPT paper's sample appears as 1.1M in one summary and 1.5M in a sibling document [2][33].
-7. Dietvorst et al. 2018 is from memory [35]; Lee and See 2004 and Parasuraman and Riley 1997 were not re-fetched [29][30].
-8. Cowork has no published user counts; Lovable's figures are unaudited [19]. No study here follows non-technical users of long-running, multi-tool agents beyond weeks [9][10][25].
+3. Anthropic's April 2025 Education Report figures on students, and ChatGPT agent's confirmation and "watch mode" behaviors (Jul 2025): from memory, unverified.
+4. Whether high automation shares for clerical task matches reflect non-technical users or developers doing admin work: the dataset matches content, not people [1]. The ChatGPT paper's sample appears as 1.1M in one summary and 1.5M in a sibling document [2][33].
+5. Dietvorst et al. 2018 is from memory [35]; Lee and See 2004 and Parasuraman and Riley 1997 were not re-fetched [29][30].
+6. Cowork has no published user counts; Lovable's figures are unaudited [19]. No study here follows non-technical users of long-running, multi-tool agents beyond weeks [9][10][25].
 
 ## Sources
 
