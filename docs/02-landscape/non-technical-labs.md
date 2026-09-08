@@ -300,7 +300,7 @@ Method: the highest-stakes claims were checked with web search (29 queries; the 
 | 52 | Meta bought Manus for over $2B, December 29, 2025 | confirmed | TechCrunch, CNBC, CBC, TechRadar snippets [70] |
 | 53 | Muse Spark April 8, 2026 and later Meta AI model claims | unverified | digest only |
 
-Tally: 33 confirmed (including 3 previously open items now resolved), 7 corrected, 13 unverified (rows 6, 7, 19, 22, 23, 31, 39, 42, 45, 46, 49, 51, 53), plus 2 partly verified (rows 43, 47).
+Tally: 31 confirmed (rows marked confirmed, including 2 previously open items now resolved, rows 9 and 41, and 1 confirmed only through secondary reports, row 30), 7 corrected (rows 3, 5, 11, 14, 18, 26, 34), 13 unverified (rows 6, 7, 19, 22, 23, 31, 39, 42, 45, 46, 49, 51, 53), plus 2 partly verified (rows 43, 47).
 
 ### Refresh notes
 
