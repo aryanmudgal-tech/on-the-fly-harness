@@ -138,7 +138,7 @@ Inngest claims the model "crossed into the early majority in 2025" as AWS, Cloud
 
 **Maturity: medium.** Layered and real, with documented gaps: the classifier "is a per-action control, not an isolation boundary" [18]; narrow allow rules can let "a destructive argument through without the classifier seeing it" unless `classifyAllShell` is on [63]; an independent researcher published "Breaking Claude Code Opus 5 Auto Mode with Indirect Prompt Injection" in 2026 (page blocked; unverified) [111].
 
-**For non-technical users.** The developer model does not translate. `Bash(git push *)` means nothing to an operations manager, and "Claude wants to run `rm -rf ./build`" is a coin flip for them, which the 93% approval rate already shows for developers. The human prompt has to nearly disappear, replaced by a boundary derived from the task's scope, a classifier, and a few high-stakes confirmations phrased as outcomes ("send this to 40 customers?") with undo. Managed Agents' tool confirmation state and Atlas's watch mode are early versions.
+**For non-technical users.** The developer model does not translate. `Bash(git push *)` means nothing to an operations manager, and "Claude wants to run `rm -rf ./build`" is a coin flip for them, which the 93% approval rate already shows for developers. The human prompt has to nearly disappear, replaced by a boundary derived from the task's scope (the "blast radius" framing in [108]), a classifier, and a few high-stakes confirmations phrased as outcomes ("send this to 40 customers?") with undo. Managed Agents' tool confirmation state and Atlas's watch mode are early versions.
 
 ## 8. Security: prompt injection and the incident record
 
@@ -160,7 +160,7 @@ Inngest claims the model "crossed into the early majority in 2025" as AWS, Cloud
 
 OpenClaw is the cautionary case. It is the most-starred personal agent (389k stars, MIT) [75], and its security policy declares "Prompt-injection-only attacks (without a policy/auth/sandbox boundary bypass)" out of scope and says it "does not model one gateway as a multi-tenant, adversarial user boundary" [75]. A developer-shaped harness shipped to non-developers produced the category's worst exposure record.
 
-**Defenses that exist.** OS sandboxes and default-deny egress; credential injection at a proxy so "the agent never sees the actual credentials" [19]; stripping tool results from the classifier's view and probing tool results and screenshots for injection [62][27]; summarizing web search results instead of passing raw pages [19]; per-site permissions and pauses at logins [30]; wrapping externally supplied text as untrusted, as routines do with `<routine-fire-payload>` [102]. OWASP codified tool poisoning as MCP03:2025 (secondary) [81]; the Cloud Security Alliance wrote in Jul 2026 that "there is currently no native MCP mechanism to detect or prevent these injections" (secondary) [82]; one tally counts 30-plus MCP-server CVEs in a 60-day window in early 2026 (secondary, unverified) [83].
+**Defenses that exist.** Sandboxes and default-deny egress; credential injection at a proxy so "the agent never sees the actual credentials" [19]; hiding tool results from the classifier and probing them for injection [62][27]; summarizing search results instead of passing raw pages [19]; per-site permissions and pauses at logins [30]; labeling externally supplied text as untrusted, as routines do with `<routine-fire-payload>` [102]. OWASP codified tool poisoning as MCP03:2025 (secondary) [81]; the Cloud Security Alliance wrote in Jul 2026 that "there is currently no native MCP mechanism to detect or prevent these injections" (secondary) [82]; one tally counts 30-plus MCP-server CVEs in a 60-day window in early 2026 (secondary, unverified) [83].
 
 **Maturity: low for the problem, medium for mitigations.** No vendor claims a fix. What holds up is architectural: assume the model will be fooled and make the fooled action harmless.
 
@@ -170,7 +170,7 @@ OpenClaw is the cautionary case. It is the most-starred personal agent (389k sta
 
 **Analogy.** Traces are the flight recorder; benchmarks are the driving test. Passing the test says little about the road.
 
-**Observability.** LangSmith and Braintrust offer nested agent spans, LLM-as-judge scoring of production traces and cost roll-ups; LangSmith added "unified workflow cost tracking" in 2026 and Braintrust wraps the OpenAI Agents SDK, LangGraph, Mastra, Pydantic AI, CrewAI and the Vercel AI SDK (vendor, secondary) [100]. Harnesses built the same in: Claude Code exports OpenTelemetry and attributes usage to skills, subagents and MCP servers [26]; Managed Agents persists event history [22]. Mature, for developers; nothing here is a consumer surface.
+**Observability.** LangSmith and Braintrust offer nested agent spans, LLM-as-judge scoring of production traces and cost roll-ups, with wrappers for the major agent SDKs (vendor, secondary) [100]. Harnesses built the same in: Claude Code exports OpenTelemetry and attributes usage to skills, subagents and MCP servers [26]; Managed Agents persists event history [22]. Mature for developers; nothing here is a consumer surface.
 
 | Benchmark | Measures | Status (Sep 2026) |
 |---|---|---|
