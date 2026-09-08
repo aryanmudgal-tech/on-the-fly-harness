@@ -113,11 +113,11 @@ return messages.map(m => m.parts.map(part => {
 
 **Manus.** Launched Mar 2025 as a cloud "computer" whose steps a general audience could watch; ~$100M ARR by Dec 2025; acquired by Meta for more than $2B on Dec 30, 2025; on Apr 27, 2026 China's foreign-investment review ordered the completed deal unwound, and later reports say Manus was separated from Meta by Aug 2026 (sibling doc, CNBC and legal-firm sources, verified in that document's own pass; CNBC blocked here) [22][23]. Manus's surface is a fixed split view: chat on one side, the agent's browser, terminal and files on the other, plus generated deliverables such as slides and websites (from memory; manus.im blocked; unverified). It is the strongest evidence that non-technical users will pay for *watching* an agent work, and a warning that a harness company's exit is exposed to policy.
 
-**Figma Make.** Announced at Config in May 2025 as prompt-to-prototype inside Figma, reportedly built on Claude (from memory; figma.com and help.figma.com blocked; unverified). It belongs with v0 and Lovable below: the agent generates an app, then a fixed design tool edits it.
+**Figma Make.** Announced at Config on May 7, 2025 as prompt-to-prototype inside Figma, powered by Claude 3.7 Sonnet at launch (confirmed by Figma's own blog titles and two press reports in search results; figma.com blocked); it has since been extended to Starter and all paid seats, and Figma published a "From Claude Code to Figma" flow that turns production code into editable Figma designs (search snippets only; dates unverified). It belongs with v0 and Lovable below: the agent generates an app, then a fixed design tool edits it.
 
 ### 2.5 "UI on demand": v0, Lovable, Bolt, Replit
 
-These products generate whole applications, so they are the strongest existence proof that Level 4 generation works at scale. The numbers, all from sibling docs citing press and vendor posts: Lovable reported $500M annualized revenue and "1 million new projects a week" on June 9, 2026 and raised $400M at $13.3B on Aug 12, 2026 [17][19]; Replit Agent 4 (Mar 11, 2026) added parallel tasks, design control and "outputs beyond code: mobile apps, presentations, data visualisations," and Replit raised $400M at $9B (secondary) [18][19]; Bolt runs Node in the browser through WebContainers on an MIT base repository (~16.5k stars, primary) and reached ~$40M ARR in its first months (secondary) [20][19]; v0's Platform SDK lets other software call v0 to generate UI (`chats.create`, `getPreview`, `v0@canary`; primary) [12]. What they do not do is generate the *operator's* interface: each is a fixed workspace (chat, preview, file tree, deploy button) whose product is a generated app for someone else. Sibling analysis notes their models are undisclosed and their permission model is "platform-bounded" [19].
+These products generate whole applications, so they are the strongest existence proof that Level 4 generation works at scale. The numbers, all from sibling docs citing press and vendor posts: Lovable reported $500M annualized revenue and "1 million new projects a week" on June 9, 2026 and raised $400M at $13.3B on Aug 12, 2026 [17][19]; Replit Agent 4 (Mar 11, 2026) added parallel tasks, design control and "outputs beyond code: mobile apps, presentations, data visualisations," and Replit raised $400M at $9B (secondary) [18][19]; Bolt runs Node in the browser through WebContainers on an MIT base repository (~16.5k stars, primary), reached ~$40M ARR in its first months (secondary), and in 2026 made a "Claude Agent" its default agent (Aug) after listing on the Microsoft marketplace (May) (secondary, sibling doc) [20][19]; v0's Platform SDK lets other software call v0 to generate UI (`chats.create`, `getPreview`, `v0@canary`; primary; `v0-sdk` 0.16.7, Aug 2026, npm) [12]. Replit's raise came with a reported $240M ARR (sibling doc) [19]. What they do not do is generate the *operator's* interface: each is a fixed workspace (chat, preview, file tree, deploy button) whose product is a generated app for someone else. Sibling analysis notes their models are undisclosed and their permission model is "platform-bounded" [19].
 
 ## 3. Evaluation
 
@@ -148,6 +148,7 @@ What exists, all primary unless noted:
 - **Consent and identity on data access.** Artifact connector calls run as the viewer, after a consent prompt, with credentials never visible to the page [1]. MCP Apps offers "optional user consent for tool calls" [5].
 - **Versioning and audit.** Artifact versions, an audit log, retention policies and a Compliance API [1].
 - **Human review loops.** Comments on artifacts with explicit activation before Claude may reply [1]; MCP Apps' "pre-declared templates for host review" [5].
+- **Untrusted reads.** Since Claude Code v2.1.257, when Claude reads an artifact someone else wrote, "the summary now treats the page as untrusted content and flags embedded instructions rather than relaying them" [4]; the in-session tool description applies the same rule to shared artifacts, comments and database rows [34].
 
 What is missing: any affordance that shows *why* the page says what it says (cell-level provenance is the spreadsheet's advantage and no HTML surface copies it); any independent audit of generated pages for injection (a page can invoke a connector tool with side effects, so a poisoned data source that reaches the page's content is a live risk the docs do not discuss); and any evaluation of whether users can tell a correct generated dashboard from a plausible wrong one. Auto mode's classifier approving a publish "without you seeing a prompt" widens the blast radius from "what the agent ran" to "what the agent showed other people" [1].
 
@@ -155,17 +156,17 @@ What is missing: any affordance that shows *why* the page says what it says (cel
 
 | System | Status on 2026-09-08 | Source |
 |---|---|---|
-| Claude Code artifacts | Beta June 2026; now on all paid plans; not on Bedrock, Vertex or Foundry; off by default in the Agent SDK | [1][2] |
-| `/design` (Claude Design in Claude Code) | Research preview, Aug 2026 | [3] |
+| Claude Code artifacts | Beta June 2026; connector calls, public links and editor roles July 2026; now on all paid plans; runtime capabilities (`db`, `room`, `sample`, `downloads`, `artifact`) gated per account and undocumented; not on Bedrock, Google Cloud's Agent Platform (Vertex) or Foundry; off by default in the Agent SDK | [1][2][34] |
+| `/design` (Claude Design in Claude Code) | Research preview, Aug 2026; standalone Claude Design an Anthropic Labs research preview since Apr 17, 2026 (secondary) | [3][33] |
 | Cowork | GA Apr 2026 (desktop); web and mobile beta Jul 2026 | [24] |
-| Gemini Dynamic View | Shipped Nov 2025; paper Apr 2026 | [15] |
-| MCP Apps | Spec 2026-01-26 stable; npm 2.0.0; eight hosts listed | [5][6] |
-| ChatGPT Apps SDK / ChatKit | Live since Oct 2025; MCP Apps support Jan 2026; monetization status unverified | [5][8][25] |
-| AG-UI | Production integrations across nine frameworks; core package 0.0.59 | [9] |
+| Gemini Dynamic View | Shipped Nov 18, 2025; paper Apr 2026; 2026 rollout claims unverified | [15] |
+| MCP Apps | Spec 2026-01-26 stable; SEP-1865 final Jan 28, 2026; npm 2.0.0 (Sep 8, 2026) on MCP SDK 2.0; eight hosts listed | [5][6][32] |
+| ChatGPT Apps SDK / ChatKit | Live since Oct 2025; MCP Apps support Jan 2026; `apps-sdk-ui` component library May 2026; ChatKit 1.9.0; monetization status unverified | [5][8][25] |
+| AG-UI | Production integrations across ten frameworks plus three community ones; core package 0.0.59 (Aug 27, 2026) | [9] |
 | A2UI | v0.9.1 stable, v1.0 RC, "early public preview" | [10] |
 | Flutter GenUI | "Highly experimental" | [11] |
-| Vercel AI SDK | 7.0.93; three major lines maintained | [12] |
-| tldraw agent kit | Shipped starter kit; make-real archived Feb 2026; production licence required | [13][14] |
+| Vercel AI SDK | 7.0.94; three major lines maintained | [12] |
+| tldraw agent kit | Shipped starter kit; SDK v5.0.0 May 2026, v5.4.0 Sep 2026; make-real archived Feb 2026; production licence required | [13][14] |
 
 ### 3.5 Cost
 
@@ -173,7 +174,7 @@ Three costs, only one quantified. *Tokens*: Anthropic says styled pages cost mor
 
 ## 4. Verdicts
 
-**Developers.** Generated UI is now a standard second surface on the terminal engine, and it is worth using for exactly what the docs say: walkthroughs, dashboards, option comparisons, parameter tuning, and progress boards that a teammate can open instead of reading a transcript [1]. The Browser pane that lets the agent verify its own frontend is arguably the larger productivity change, because it closes the loop rather than decorating the output [4]. For developers *building* agent products, the protocol choice is settled enough to act on: MCP Apps for anything that should render inside Claude or ChatGPT; AG-UI plus the AI SDK for a product with its own front end; A2UI if the product spans native platforms and cannot run generated code. None of these replaces the terminal; each attaches to it.
+**Developers.** Generated UI is now a standard second surface on the terminal engine, and it is worth using for exactly what the docs say: walkthroughs, dashboards, option comparisons, parameter tuning, and progress boards that a teammate can open instead of reading a transcript [1]. The Browser pane that lets the agent verify its own frontend is arguably the larger productivity change, because it closes the loop rather than decorating the output [4]. For developers *building* agent products, the protocol choice is settled enough to act on: MCP Apps, now a final MCP extension with a 2.0 SDK, for anything that should render inside Claude or ChatGPT; AG-UI plus the AI SDK for a product with its own front end; A2UI if the product spans native platforms and cannot run generated code. None of these replaces the terminal; each attaches to it.
 
 **Non-technical users.** The evidence says they want to *see* the agent work (Manus, Cowork, Replit's non-code outputs) and will pay for generated deliverables (Lovable's revenue), but nothing shipped lets them *run* an agent through an interface it made for them. The surfaces that reach them are fixed: Cowork's files-and-connectors view, ChatGPT's canvas, Notion's pages, the spreadsheet grid. Generated pages are what they receive, with a label saying the content is unverified and no way to check it short of asking the agent again. The spreadsheet is the exception that shows what a verifiable generated surface would look like, and it is decades old.
 
@@ -186,7 +187,7 @@ Three costs, only one quantified. *Tokens*: Anthropic says styled pages cost mor
 
 **Contradicts.**
 - Every generated-UI surface in this document is bolted onto a CLI-shaped engine or a fixed workspace. Cowork is "the same engine with a graphical interface" [30]; artifacts are a tool call from a terminal session [1]. The default *runtime* is not being reimagined; the display is.
-- Generated UI is an output surface. No shipped product or study shows a generated interface used to control a long-running agent, and the one visual agent-builder from a lab (AgentKit's Agent Builder) was wound down within eight months (secondary) [24]. The thesis's stronger claim, that the harness itself should be built on the fly for the user, has no evidence here.
+- Generated UI is an output surface. No shipped product or study shows a generated interface used to control a long-running agent, and the one visual agent-builder from a lab (AgentKit's Agent Builder) was wound down within eight months (secondary) [24]. The thesis's stronger claim, that the harness itself should be built on the fly for the user, has no evidence here. The artifact runtime's new shared database and page-side sampling make a generated page a small app, but one that reports to the session rather than steering it [34].
 - The labs own the trusted host. Artifacts require a claude.ai login, run on Anthropic infrastructure, and are unavailable through Bedrock, Vertex and Foundry [1]; ChatGPT apps run inside ChatGPT. A startup's generated UI has to render inside someone else's sandbox or ship its own host.
 
 **Nuance.**
