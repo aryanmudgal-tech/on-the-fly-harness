@@ -34,3 +34,7 @@ The first of the re-dispatched agents (Task 18, non-technical users) terminated 
 ## Resumed at 20:07
 
 The limit was lifted. Five agents from the 19:55 batch survived and finished or are finishing (protocols research, OS-level research, developer-users research, independent-harness fact-check, non-technical-startups fact-check). Ten agents that had died were re-dispatched: research for runtime and safety and for non-technical users; fact-checks for labs, academic and industry; verify-and-refresh for adoption evidence, non-technical labs, messaging, generated UI and voice. Note: two documents (adoption evidence, developer users) were first written by workflow agents that outlived the stop signal and had no web search; their verify-and-refresh passes compensate.
+
+## Session limit at 20:10, resumed 23:31
+
+The 5-hour session limit stopped 12 of the 14 running agents; protocols research and non-technical-startups fact-check finished first. Committed drafts at 20:11. Resumed at 23:31 with 13 direct agents: research for runtime and safety and for non-technical users; fact-checks for labs, academic, industry, protocols, OS-level and developer users; verify-and-refresh for adoption evidence, non-technical labs, messaging, generated UI and voice.
