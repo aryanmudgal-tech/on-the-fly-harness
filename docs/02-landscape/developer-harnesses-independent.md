@@ -244,7 +244,7 @@ Abbreviations: Loop = how far it runs unattended; Ctx = context and memory; Perm
 ## What is converging
 
 1. **The agent manager is the new default view for developers.** Cursor 3, Devin Desktop, Kilo, Augment Intent, Zed 1.0, Warp, Cline's desktop Hub and Superset all present a list of running agents with worktree isolation and diff review. This shape did not exist as a product in January 2025.
-2. **One runtime, many surfaces.** Factory (eight surfaces), Cline (five), Kilo (five), Hermes (six chat platforms plus CLI and desktop) and Cursor's SDK all treat the surface as a thin adapter over one agent runtime. The labs' pattern (Task 3) is mirrored exactly.
+2. **One runtime, many surfaces.** Factory (eight surfaces), Cline (five), Kilo (five), Hermes (the five chat platforms named above plus CLI and desktop) and Cursor's SDK all treat the surface as a thin adapter over one agent runtime. The labs' pattern (Task 3) is mirrored exactly.
 3. **CLI harness as engine, protocol as plug.** ACP (Zed, JetBrains, Cognition, opencode) and MCP are how surfaces and engines connect; orchestrators spawn CLIs. This is why the terminal harnesses with no GUI (opencode, pi) have the largest developer star counts.
 4. **Model-agnosticism plus a house model at the top.** Everyone supports BYOK; the two best-funded independents (Cursor, Cognition) also train models to control cost and speed, and Cursor's Composer 2 shows "own model" usually means "post-trained open-weight base".
 5. **Background execution and scheduling everywhere.** Warp Oz, Cursor Automations, Cline scheduled agents, Hermes cron, NanoClaw scheduled tasks, OpenHands automations, Symphony's board polling. The loop is leaving the foreground.
