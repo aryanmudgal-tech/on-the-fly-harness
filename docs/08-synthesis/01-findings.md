@@ -17,7 +17,7 @@ Square brackets name a research document: [anatomy] and [history] are the primer
 |---|---|---|
 | The harness decides whether agents work | Supported, with a split: true for the outer layer (permissions, runtime, memory, verification, surfaces), false for the inner layer (loop, prompts, scaffolds), which is shrinking | Findings 1, 9 |
 | Better models make the harness the bottleneck | Half right: better models absorb the inner harness and expose the outer one as the remaining bottleneck | Findings 1, 6, 9 |
-| Neither a CLI nor a desktop app can be the default surface | Already true and already priced in by every lab; the CLI became the engine, not the front door | Findings 2, 3 |
+| Neither a CLI nor a desktop app can be the default surface | Half right: the CLI became the engine, not the front door, and chat surfaces carry two orders of magnitude more people; but the desktop app as a client of a cloud runtime is exactly where the two largest labs converged in 2026 | Findings 2, 3 |
 | The default harness must be reimagined for non-technical people | True, but the part to reimagine is the trust model (authority, verification, memory, cost), not the body style | Findings 4, 5, 10 |
 | A startup can own the reimagined default | Not supported for a general-purpose harness; supported only for narrow positions that own a workflow, an outcome, or a cross-vendor governance layer | Findings 7, 8 |
 
@@ -45,7 +45,9 @@ Failed or absorbed within a year: OpenAI's Operator (folded into ChatGPT within 
 
 Where the revenue is: Agentforce at $1.2B ARR, ServiceNow's AI contract value past $1B, Glean past $300M, Microsoft 365 Copilot at 30M paid seats, Copilot Cowork used by more than half the Fortune 500 during a three-month preview (all vendor figures) [nontech-startups][nontech-labs][messaging]. Those live in a CRM, a service console, a search bar, Slack, Teams and the office suite.
 
-**So what.** For non-technical people the default surface is "wherever the data and identity already are": chat inside existing tools, the office suite, the OS assistant, a browser page the agent generates, a phone notification. What survived was reimagining the trust model inside existing surfaces, not the body style.
+By people and messages, chat wins by two orders of magnitude: ChatGPT reported about 1B weekly users in mid-2026 against roughly 10M combined users for Codex and ChatGPT Work, the largest terminal-born agent (vendor statements via secondary reports) [adoption]. By money and delegated autonomy, developer surfaces lead: coding took roughly 55% of departmental enterprise AI spend in 2025 (Menlo Ventures, via secondary), and the Economic Index shows automation-style conversations at 60.8% among conversations matched to software-developer tasks against 48.6% overall [adoption]. The fastest-growing cohort inside the coding agents is non-developers: knowledge workers were about 20% of Codex's weekly users in June 2026 and growing more than three times faster than developers (vendor, via secondary) [adoption]. And the desktop app is not dead: the two largest labs converged on a desktop app as the non-terminal client of a cloud runtime (the Codex desktop app merged into the ChatGPT app in July 2026; Claude Cowork), and that merge coincided with Codex's fastest growth [adoption][nontech-labs].
+
+**So what.** For non-technical people the default surface is "wherever the data and identity already are": chat inside existing tools, the office suite, the OS assistant, a browser page the agent generates, a phone notification, with a desktop or web app as the place to review. What survived was reimagining the trust model inside existing surfaces, not the body style. The thesis clause "nor a desktop app" is wrong about the client and right about the runtime: the desktop is dead as the place you watch the agent from, not as the window you approve things in.
 
 ### 4. Non-technical delegation is broad and shallow, and the binding constraint is authority, not accuracy
 
@@ -116,6 +118,6 @@ Supports: the harness is where the work and the incidents are, the surface is al
 
 ## Open questions and unverified claims
 
-- The adoption split between chat surfaces and terminals or IDEs rests on vendor disclosures and the Economic Index; see [adoption] for the numbers and their status.
+- The adoption split between chat surfaces and terminals or IDEs rests on vendor disclosures (via secondary reports) and the Economic Index; [adoption] lists each figure's status. Independent, controlled evidence exists only for developers (METR), and METR itself declared its 2026 estimates unreliable.
 - Several 2026 figures cited above were confirmed only through two or more independent search excerpts because primary pages were blocked; the verification notes in each document say which.
 - No document could verify the current state of the spreadsheet-native harnesses (Claude for Excel, Shortcut, Paradigm), which Finding 10 flags as potentially the closest thing to a non-technical harness.
