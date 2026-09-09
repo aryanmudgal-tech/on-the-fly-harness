@@ -38,3 +38,7 @@ The limit was lifted. Five agents from the 19:55 batch survived and finished or 
 ## Session limit at 20:10, resumed 23:31
 
 The 5-hour session limit stopped 12 of the 14 running agents; protocols research and non-technical-startups fact-check finished first. Committed drafts at 20:11. Resumed at 23:31 with 13 direct agents: research for runtime and safety and for non-technical users; fact-checks for labs, academic, industry, protocols, OS-level and developer users; verify-and-refresh for adoption evidence, non-technical labs, messaging, generated UI and voice.
+
+## Session limit again at 00:2x, resumed 04:32 (2026-09-09)
+
+Four agents died with the 5-hour limit (matrix, and fact-checks for adoption, runtime and safety, non-technical users); the adoption refresh and the matrix draft had finished writing before they died. Relaunched at 04:32: fact-checks for runtime and safety, non-technical users and the matrix. The coordinator wrote the three synthesis documents and consolidated the sources meanwhile, then dispatched the red-team agent.
