@@ -193,3 +193,55 @@ It gives up the reimagined default harness deliberately, because the corpus says
 12. **Add the open-source harness supply and the build-versus-buy risk:** DeepSeek Harness (216k stars in 26 days, MIT, everything a plugin), Hermes, Kiro Crew as free substrates that already carry the adapter layer, and McKinsey's 32% build-in-house figure as the reason an enterprise may vibe-code the outer harness rather than buy it.
 
 *Coordinator's response follows.*
+
+---
+
+# Coordinator's response (2026-09-09)
+
+*Written after checking each factual claim above against the research documents. The red team was right on every load-bearing fact it raised, and the three synthesis documents were rewritten rather than patched. This section records what was accepted, what was pushed back on, and what changed where.*
+
+## Verdict on the verdict
+
+Accepted in full. The first synthesis was more confident than its sources, reported the friendlier of two accounts where they disagreed, called existing designs new, and built a company on the position the strategy document ranked last. The corpus was better than the synthesis written on it. The three documents now carry a "what changed" section at the top, and this file stays in the repository as the record of why.
+
+## Accepted, with the change made
+
+| Red-team item | Check against the corpus | Change |
+|---|---|---|
+| Findings 1: the policy timeline was stale and friendlier than the primary-sourced version | `value-capture.md` §5 table and note 3e (fetched OpenClaw provider doc): June 15 pause; July 13 "extra usage"; September 3 marker detection; "changed at least five times in eight months" | Finding 7 rewritten with the full sequence; platform-risk falsifier restated as ongoing; cross-document notes added to `history.md`, `developer-harnesses-independent.md` and the matrix |
+| Findings 2: "authority, not accuracy" hid a disagreement | `non-technical-startups-enterprise.md` TL;DR and Contradicts (AutomationBench 50.3%; the 1.25 out of 3 test) | Finding 4 retitled: both bind; reliability is model-side, authority harness-side |
+| Findings 3: the 2024 tau-bench figure was undated | `runtime-and-safety.md` benchmark table (tau2 and tau3 telecom about 99%, likely lenient averaging) | Dated and superseded in Finding 9; "no benchmark" narrowed to the operator's own work |
+| Findings 4 and design attacks 1, 4: the "what is new" table ignored Dust, MCP annotations, Scout, Copilot Cowork and the budget cap | `non-technical-startups-enterprise.md` §4; `protocols.md` §3.2 and §3.7; `non-technical-labs.md` Microsoft section; `anatomy.md` §3.1 | Table replaced by "What exists, and what an outsider can own"; novelty claim reduced to normalized vocabulary and independent proof |
+| Findings 5: "every one of these standards" | `protocols.md` §5 and §6 (ACP is Zed and JetBrains; AG-UI is CopilotKit; AI SDK is Vercel) | Finding 8 corrected and its conclusion reversed for the interface side |
+| Findings 6: "only genuinely new approval primitive" | `messaging.md` §5 scope; AP2 mandates, computer-use tiers, Windows agent accounts elsewhere | Finding 5 now lists the scattered approval designs and scopes the Teams claim to chat |
+| Findings 7: the inner harness is not trivial | `industry-engineering.md` §5; `history.md` Era 4 | Finding 1 retitled; "trivial" replaced by "small in lines, not in leverage"; per-task regeneration dropped |
+| Findings 8: Agent Builder is alive until November 30, 2026 and was moved into ChatGPT | `developer-harnesses-labs.md` TL;DR | Finding 3 corrected |
+| Findings 9: the Economic Index is about conversations, not people or authority | `adoption-evidence.md` §2; `non-technical.md` open question 4 | Finding 4 says so; wedge criterion 1 removed from the recommendation |
+| Findings 10: policy is centralizing in the identity provider | `non-technical-labs.md` Anthropic section; `messaging.md` §2; `protocols.md` §8 | Finding 5 and Principle 4 now name the identity provider as the natural owner |
+| Findings 11: Pulse is an anecdote; Daily Brief ships the same idea | `voice-ambient.md` §6 and §7 | Finding 11 downgraded; the interruption policy left to vendors |
+| Findings 12: the deals list | `value-capture.md` §4 | Finding 7 corrected (Cognition is a harness company; Dia was 2025) |
+| Evidence 1, 7, 8, 10, 11, 12: thin attended demand, readers who cannot evaluate evidence, the office suite as review surface, open-source harness supply, buyer-can-build, cost-first cancellations | The user, landscape, history and adoption documents as cited | Findings 2, 3, 4, 7, 10 and Principles 7, 8 and 10 carry them; the design's default review surface is the grid |
+| Evidence 2 and design attack 5: gross margin absent, cost model inverted | `value-capture.md` TL;DR and §3; `runtime-and-safety.md` §10; `developers.md` §4.3 | Gross margin is the first risk in the recommendation and the first row of its comparison table |
+| Evidence 3 and recommendation attacks 2, 3: Microsoft and GitHub already ship cross-vendor governance; the Okta analogy fails | `non-technical-labs.md` Microsoft section; `os-level.md` §2.1; `developer-harnesses-labs.md` | "Why a lab would not just do this" rewritten; the neutral control plane dropped as a company |
+| Evidence 4 and change 7: generating the inner harness per task contradicts the research and the cache economics | `academic.md` §4 and §6; `industry-engineering.md` §5 | Dropped; the design says use the vendor's default and re-simplify |
+| Evidence 5 and design attack 8: portable memory is an injection vector and an enterprise non-starter | `runtime-and-safety.md` §5; `developers.md` §7 | The layer keeps no memory beyond verification records |
+| Evidence 6 and design attack 3: the walkthrough kept all three trifecta legs and entered through a shared channel | `runtime-and-safety.md` §8 and §11; `messaging.md` §7 and §8 | Walkthrough rewritten: attended, in the grid, no send capability during untrusted reads, individual entry |
+| Evidence 9, design attack 4 and recommendation attack 11: no enforcement point on rented engines; Managed Agents lacks zero data retention | `developer-harnesses-labs.md` qualification one; `protocols.md` §8; `anatomy.md` §3.5 | Design part 4 separates description from gating; gating limited to local hooks; runtime constraints named |
+| Design attack 2: the ledger does nothing at the payment release | `messaging.md` §9; the design's own open question | Undo dropped as a promise; compensating actions recorded as facts |
+| Design attack 6: people will not use the controls as designed | `runtime-and-safety.md` §6; `developers.md` §4.2; `non-technical-startups-enterprise.md` Nuance | The product no longer depends on a person operating controls; proof replaces approval as the unit |
+| Design attacks 9 and 10: the interruption model is a judgment part; two thirds of the outer harness were compensations | `anatomy.md` §5; `industry-engineering.md` | Interruption policy removed; the design shrank to identity (the organization's), consequence vocabulary and proof |
+| Recommendation attacks 1, 4, 5, 6, 7, 12: the ranking was inverted, the wedge halves had opposite exits, the criteria selected for markets where the startup is a feature, falsifier 2 was already answered, the developer opening was dropped, the investor's four questions | `value-capture.md` §11 and §4; `developers.md` Nuance | Recommendation rewritten around the independent verifier with developers first; criteria replaced; the vertical kept as the fallback |
+| Change 8: research the incumbents of the three candidate wedges | Not in the corpus | The three non-technical candidates were withdrawn; the second market is scoped to reconciliations, reports and records where claims tie to rows, and the incumbents question moves to the interview step |
+
+## Pushed back on, with reasons
+
+- **"The buyer can build it" (Evidence 11, attack 10).** Accepted for the first version's design, which was hooks, a classifier call, a ledger table and a relay. For the verifier it cuts less deeply: a hook and a model call are easy, but the calibrated corpus of verified and unverified artifacts, the false-verified rate, and integrations across every harness and the office suite are the product, and an organization that builds its own checker has no independent party. The risk is recorded as third in the recommendation rather than dismissed.
+- **"Publishing an evaluation is marketing" (attack 9).** Partly accepted: published leaderboards help the labs tune against them. The evaluation the recommendation keeps is not a leaderboard; it is the measurement of real outcomes on real work that the runtime and academic documents say does not exist, produced as a by-product of checking. Whether to publish it is a later decision.
+- **The developer first market is crowded.** The red team's alternative underweights this: code review is contested by the labs and by funded startups, and the labs can make their reviewers block with a settings change. The recommendation records this as the second risk and makes independence and the cross-engine corpus carry the difference explicitly, rather than assuming the market is open.
+- **"What survives: split the harness; never own the loop; verification for non-code work; the vertical as proven monetization."** Agreed on all four, and the vertical is kept as the fallback rather than discarded, because the second market for proof may in practice take the shape of an operator-configured product for one class of records.
+
+## What each document now says that it did not before
+
+- `01-findings.md`: the full policy timeline; both constraints binding; the inner harness as the model owner's; the scattered approval designs that exist; the identity provider as policy's owner; the grid as the verification surface; cost as the first risk; a "what changed" section.
+- `02-reimagined-harness.md`: the vendor's engine, the organization's authority, and an independent layer that reads everything and acts on nothing; description separated from gating; no undo promise; no memory store; no interruption model; a rewritten walkthrough that breaks the trifecta and enters through an individual channel; "what exists, and what an outsider can own".
+- `03-recommendation.md`: sell proof, not permission; developers first, the office suite second, the vertical as fallback; gross margin as the first risk; a comparison of the two positions on margin, liability, platform risk, neutrality, enforcement and incumbents; falsifiers and next steps rewritten around cost per check and the false-verified rate.
