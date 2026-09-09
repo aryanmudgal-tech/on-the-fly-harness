@@ -1,118 +1,94 @@
-# Recommendation: sell proof, not permission
+# Recommendation: one hypothesis, one buyer, one test, and a fallback
 
-*Research program: agent harnesses. Synthesis written 2026-09-08 by the coordinator; rewritten 2026-09-09 after the red-team review in `04-red-team.md`. Status: final. This is the startup-thesis reading of `01-findings.md` and `02-reimagined-harness.md`. Market sizing is deliberately excluded, as agreed at the start of the program.*
+*Research program: agent harnesses. Written 2026-09-08; rewritten 2026-09-09 after the red-team review in `04-red-team.md` and again on 2026-09-09 after the market test in `05-market-test.md`. Status: final. Market sizing is deliberately excluded, as agreed at the start of the program.*
 
 ## What this document answers
 
-- Given the evidence, what should a startup that believes in the thesis build, for whom, and why would it survive the labs and the suites?
-- What would prove the recommendation wrong, and what to do next before any market sizing.
+- Given the evidence, is there anything a startup should build here, and what would have to be true first?
+- What was wrong with the two earlier versions of this recommendation, and why.
 
 ## The recommendation in one paragraph
 
-Build the independent verifier: a service that checks an agent's work from outside the harness that produced it, and renders the proof where people already check work. It plugs into every harness through the hooks and traces they all expose and into the office suite through the add-ins that went generally available this year. It takes the task, the artifact and the trace, and returns proof: which claims rest on which sources, which checks ran, what changed, which actions of which consequence were taken, and what could not be verified. It never acts, holds no credentials, keeps no ledger of authority and owns no surface, so it carries none of the liability, the identity fight, the injection surface or the platform risk that a control layer carries. Start with developers, who have a budget, a review bottleneck and a countable unit, and whose harnesses already expose hooks. Go second to the spreadsheet and the document, where nobody offers proof at all. Price per verified outcome. Treat consequence-aware permissions as something the proof can later earn the right to gate, on local harnesses only, if customers pull for it.
+Do not build yet. The two markets the previous version proposed are both occupied: checking code is CodeRabbit's product, and checking claims against sources in documents and spreadsheets is Clearbrief's, MindBridge's and Energent's. One narrow hypothesis survives the evidence: nobody, in any domain, judges the agent's execution trace, the record of what the agent actually did as opposed to what it produced. Test that hypothesis against the compliance and internal-audit buyer, who has a dated control requirement and a budget line no code-review vendor competes for, and test it with a measurement rather than with interviews. If the test passes, the product is trace verification sold as an audit control across every agent surface at once, not a code reviewer. If it fails, the fallback is the position the strategy document ranks highest anyway: a vertical, operator-configured harness that owns one workflow end to end.
 
-## What changed, and why
+## The two errors this document made, and how they were caught
 
-The first version of this recommendation proposed a model-neutral authority layer as the company and a vertical workflow as the wedge. The red team, working only from the corpus, showed that the authority layer's pieces already ship from Dust, Microsoft and the MCP specification; that the neutral seat is held by the company that owns identity, the office suite and the directory, and that the labs are routing policy to it; that an outside layer cannot enforce anything on hosted engines; that the layer multiplies rented tokens against outcome prices measured in dollars; that whoever holds the grants holds the blast radius; and that the strategy document itself ranked that position last. The red team's alternative, an independent verifier, is better supported by the same corpus, and this document adopts it. The evidence that decided it: the developer document names verification and proof of work across any engine as the one defensible position for an outsider; the design table's "nearest existing thing" for proof on documents and data was nothing; a verifier reads rather than generates, so its cost scales differently from everything else in the corpus; and a check from the party that did the work is not independent, which the labs' own review products, built not to block, illustrate.
+**Version 1 proposed a startup-owned authority layer**: identity, consequence-class permissions, an undo ledger, portable memory and an interruption policy. The red team killed it from the corpus. Those pieces already ship from Dust, Microsoft and the specification itself; the neutral seat belongs to whoever owns the identity provider and the office suite; an outside layer cannot enforce anything on a hosted engine; a ledger cannot undo a released payment; and the design multiplied rented tokens against outcome prices measured in single dollars.
 
-## The thesis you started with, and what survives
+**Version 2 proposed an independent verifier**, entering through developers and going second to spreadsheets and documents "where nobody offers proof at all". The repository owner asked whether that was CodeRabbit. It was. The market test in `05-market-test.md` found that CodeRabbit ships five of the six outputs this document named, blocks merges, reads the linked ticket, executes checks in a sandbox, drops findings it cannot ground, and markets itself with the word "independent", at 17,000-plus customers and a $1.5B valuation as of August 2026. The second market was occupied too. The claim that nobody checks agent work from outside was false when written.
 
-| You said | The evidence says | Consequence for the plan |
-|---|---|---|
-| As models get better, the harness becomes the bottleneck | True of the outer layer; the inner layer is the model owner's and should not be a startup's moat | Build only in the outer layer, and only the part an outsider can own |
-| A CLI cannot be the default way to operate agents | Already the labs' own position; the CLI is the engine | Plug into every engine through its hooks; never build one |
-| A desktop app cannot be the default either | Wrong about the client: the labs converged on desktop and chat apps as the front of a cloud runtime | Deliver proof into their apps and into the office suite; do not ship a competing app |
-| The harness must be reimagined for non-technical people | True for the trust model; demand is thin, attended and document-shaped | Proof rendered into the grid and the document, for attended work first |
-| A startup can define the new default | Not for a general harness, not for a neutral control plane | Own proof, not permission; earn anything more |
+Both errors have the same cause worth recording: the research corpus profiled harnesses and never profiled the tools that check what harnesses produce. Nineteen documents, roughly 640 fact-checked claims, and the adjacent category was outside the plan's scope. A verification pass cannot catch a question nobody asked.
 
-## The positions considered
+## What survives
 
-1. **Open runtime.** A commodity with a dozen suppliers, bundled by the labs [runtime][labs]. No.
-2. **A new general surface for non-technical people.** The worst business record in the corpus [findings 3]. No.
-3. **Orchestration of many harnesses for developers.** Bundled by the labs; standalone managers died or were absorbed [independent]. No.
-4. **A model-neutral authority and control layer.** Its components already ship; the seat belongs to the identity provider and the suite; it cannot enforce on hosted engines; it holds the blast radius; the strategy document ranks it last [strategy][nontech-labs][labs]. No, as a company. Its vocabulary survives inside proof.
-5. **A vertical operator-configured harness.** The only archetype with reliable monetization, and the least harness-shaped [nontech-startups][strategy]. Yes, as the fallback if the verifier hypothesis fails, and as the shape the verifier's second market may take in practice.
-6. **An independent verifier.** Reads every harness through hooks and traces; proves work where people check it; holds nothing and acts on nothing; prices per verified outcome. Yes.
+One input is unread by every product found, and the negative is primary-grade on two of them. CodeRabbit's own harness skill sends "code diffs to the CodeRabbit API for analysis" and names no other input. Claude Code's reviewer analyzes "the diff and surrounding code" plus the instruction files. Neither reads the producing agent's session.
 
-## The product
+That matters because a trace covers a defect class a diff structurally cannot show: a deleted failing test, a hand-edited snapshot, a disabled lint rule, a live endpoint called mid-run, or any side effect that never reached the repository. It also matters because it is exactly what a control framework asks for. COSO's guidance on internal control over generative AI, dated 23 February 2026, requires an audit trail of prompts, inputs, outputs, model and configuration versions, and evidence of human review (secondary, multiple sources). That is a trace, described by an auditor.
 
-- **Where it runs.** As a stop hook and an MCP server inside Claude Code, Codex, Cowork, Copilot and the open harnesses, whose hook event names are near-identical [protocols][matrix]; as an add-in in Excel, Word and Outlook, which are generally available surfaces for agent work [nontech-labs]; as a check on pull requests that the organization can make a merge requirement.
-- **What it reads.** The task as stated, the trace of what the agent did, the artifact it produced, and the consequence annotations the harness exposes (MCP's read-only and destructive annotations, Dust-style stakes) [protocols][nontech-startups].
-- **What it returns.** Proof: claims tied to source rows or files, checks run and their results, what changed against the task, actions taken by consequence class and by which principal, and an explicit list of what could not be verified. Rendered as a provenance column in the sheet, tracked changes with sources in the document, a report on the pull request.
-- **What it never does.** Act, send, hold credentials, store organizational memory, or claim to undo.
-- **What accumulates.** The corpus of verified and unverified artifacts and the evaluation it enables, which is the measurement the research documents say does not exist [runtime][academic].
+## Why this is a hypothesis and not a plan
 
-## Why this position rather than the authority layer
+Four reasons it may still be a feature rather than a company, all from the market test.
 
-| Test | Authority layer | Independent verifier |
-|---|---|---|
-| Gross margin | Adds a classifier round-trip, a second-model review, a generated page and fan-out on top of rented tokens; agent teams use about seven times the tokens (vendor) [runtime] | One read of a trace and an artifact per check; no fan-out; no generation of the work itself |
-| Liability | Holds grants, credentials and a ledger: the blast radius [red team] | Holds nothing; the worst failure is a wrong "verified", a reputational risk to be measured and priced |
-| Platform risk | Depends on subscription terms that changed five times in eight months and on hosted engines that admit no enforcement [strategy][labs] | Uses hooks and traces every harness exposes and public APIs; degrades to "unchecked" rather than "broken" when a vendor changes terms |
-| Neutrality | Must be argued to buyers who already pay Microsoft for governance | Structural: a check is only worth paying for if it is independent of the producer |
-| Enforcement | Advisory on hosted engines | Not needed; the organization's platform enforces "no merge without a check" |
-| Incumbents | Microsoft Agent 365, Scout, Cowork RBAC, enterprise-managed MCP auth [nontech-labs] | Vendor reviewers that never block merging; code-review startups; nothing for documents and data [dev-users][generated-ui] |
+- **The platform owner already captures the input.** GitHub's documentation describes opening the linked review session from the pull request timeline to see which tools were called and the agent's reasoning (secondary). Capture is solved by the party that owns the merge gate; only judgment is left, and judgment is a prompt.
+- **A trace is a self-report.** Anything load-bearing in it must be re-derived against the repository, and CodeRabbit already re-derives by executing code in a sandbox, which is stronger evidence than reading an agent's account of itself.
+- **The pipe is built for the incumbent.** Its command-line reviewer already runs inside Claude Code and Codex sessions, where the transcript is a file on disk, and its context assembler already fuses a dozen inputs with cheap-model compression first.
+- **Someone is already there.** AgentPM sells an evidence layer that captures local agent sessions across four harnesses and keeps command execution and tool output with the session record (secondary; size, funding and customers not found).
 
-## The wedge criteria, revised
+## The test that settles it
 
-1. **A buyer with a budget and a bottleneck.** Developers: review time up 91% in the one telemetry cited (vendor, via secondary), throughput up and stability down in DORA, three to five sessions per engineer in OpenAI's own account [dev-users].
-2. **A countable unit.** A verified pull request; a reconciled statement; a report whose figures tie to sources.
-3. **An observation point that exists today.** Hooks and traces in every developer harness; add-ins in the office suite [protocols][nontech-labs].
-4. **A checkpoint nobody else owns.** The organization's merge requirement is set by the organization, not by the engine vendor; the same is true of who signs off a reconciliation.
-5. **No credentials and no action** in the product's path, so procurement asks about data access, not blast radius.
-6. **Evidence the labs cannot produce.** A check from the same vendor, model family and context as the work is not independent; the labs' reviewers are built not to block [dev-users].
+Take at least 500 real agent-authored pull requests that a leading reviewer already passed clean. Recover each session trace. Measure two numbers.
 
-Applied: developers first, because criteria 1, 3 and 6 are strongest there and the unit is clean. The office suite second: reconciliations, reports and records, where claims tie to rows and where the corpus records no proof product at all [generated-ui][nontech-startups]. Judgment-heavy documents last, because "verified" is undefined for them.
+| Measurement | What it decides |
+|---|---|
+| Share of reviewer-passed changes carrying a defect visible only in the trace | Whether the gap exists at all |
+| Share of those a sandbox could have caught by re-executing the repository, without the trace | Whether the gap is a product or a better sandbox |
 
-## Why a lab would not just do this
+The second row decides it. If re-execution finds the defects, the right product is a sandbox and CodeRabbit owns it. Any threshold on the first row is a judgment call, not a measured figure, and should be set before the data is collected rather than after.
 
-The honest answer is that a lab could ship a checker tomorrow, and the argument that it will not is about incentives, not capability.
+Run this before interviews. Interviews will restate what the corpus already says. This will not.
 
-- **Conflict of interest.** A first-party verifier is graded on the same outcomes as the generator it checks, and the labs' review products are shipped as advice that never blocks a merge [dev-users]. Separation of duties is a control organizations already understand and already pay for in finance and security.
-- **The judgment part that must not be absorbed.** The anatomy document's rule is that judgment parts get absorbed into the model and plumbing stays outside [anatomy]. Independence is the one judgment property that cannot be absorbed by the producer without ceasing to be independence.
-- **The suites.** Microsoft can add a checker to the office suite; it is the strongest counter to the second market. The answer is the same as for code: the check must not come from the party whose agent did the work, and Copilot Cowork runs on another lab's models, which makes even Microsoft's own stack a two-party system [nontech-labs].
+## If the test passes
 
-What this argument does not do: it does not stop a lab from bundling a good-enough check into its own surface and winning on distribution, which is what happened to standalone browsers and orchestrators [findings 3]. The bet is that independence is a property buyers value in a checker, as they do in an auditor, in a way they do not value in a controller.
+Build trace verification as an audit control, not a code reviewer. Sell to compliance and internal audit. Cover every agent surface at once rather than starting with code, because the control requirement is surface-independent and because code is where the incumbent is strongest. Price against the control, not against a per-review comparison, since the per-review ceiling is brutal: a leading reviewer costs roughly one to two dollars per pull request, and the only public price for a model-written review is a vendor's own at fifteen to twenty-five dollars for a diff, which a trace exceeds in length.
 
-## What would falsify this
+Note the substrate constraint before designing anything. Anthropic's compliance interface does expose full session transcripts for enterprise organizations across its surfaces, but it is read-only, compliance-scoped and lossy: reasoning blocks are never included, the system prompt is never returned, and tool inputs and results are truncated by default.
 
-- Organizations accept the engine vendor's own review as sufficient and make it a merge requirement, and no buyer distinguishes independence from convenience.
-- Checking turns out to cost as much as generating on real traces, so the margin argument fails.
-- "Verified" cannot be defined for the second market in a way customers accept, so the product stays a code-review tool in a crowded field.
-- Models become reliable enough that organizations stop reviewing agent work at all, and the review bottleneck disappears rather than moves.
-- Vendors close the observation points: hooks removed, traces withheld on hosted surfaces.
+## If the test fails
+
+Take the vertical operator-configured harness, which the strategy document ranks as the most defensible position in the corpus and the least harness-shaped: a non-technical operator edits policy while the vendor owns the loop, in one workflow, end to end. It is the only archetype with reliable monetization in the entire research program. It is also the answer that requires no new market to exist.
 
 ## Risks, in order
 
-1. **Gross margin.** The corpus's central finding about harnesses is that renting frontier models leaves a thin spread or a loss [strategy]. A check reads once and does not fan out, which is the structural reason to expect better economics, but a full-trace review by a strong model is not free, and the only public price for a code review is Anthropic's own at $15 to $25 per review [dev-users]. The prototype must produce a cost per check and a price per verified outcome before anything else is decided.
-2. **A crowded first market.** Code review is contested by the labs (Claude Code's Code Review, Copilot review, Cursor's reviewer) and by funded startups (Qodo, CodeRabbit) [independent][dev-users]. Independence and the cross-engine corpus have to carry the difference; if they do not, the first market is a feature.
-3. **The buyer can build it.** A third of organizations skipped buying at least one product because they could build it with agentic coding tools [adoption]. A hook and a model call are easy; a corpus, a calibrated evaluation and integrations into every harness and the office suite are less easy, and that is the whole defense.
-4. **Models check themselves.** If self-verification becomes reliable and free, the product shrinks to the independence argument alone.
-5. **Observation points.** Hosted surfaces expose fewer hooks than local ones [labs][protocols]; the product's reach on cloud sessions depends on vendors continuing to expose traces.
-6. **Evidence quality.** Much of this corpus was verified through search excerpts and GitHub mirrors because primary sites were blocked in this session; the verification notes in each document say what could not be opened. Vendor numbers are vendor numbers.
+1. **The first market is occupied, not crowded.** CodeRabbit, as of 2026-08-12: $143M Series C at a $1.5B valuation, more than 17,000 customers, more than two million reviews per week, revenue up more than five times year over year (secondary; all primary domains blocked, corroborated across five or more independent snippets). It ships five of the six outputs version 2 named.
+2. **The surviving differentiator is a feature on someone else's surface.** See the four reasons above.
+3. **The second market is occupied too.** Clearbrief shipped a document cite-checking add-in in December 2025 with at least three named competitors; Energent shipped a fresh-sub-agent number-retracing audit around 2026-07-07; MindBridge, DataSnipper, Caseware and Fieldguide surround the spreadsheet (all secondary).
+4. **Gross margin, still unmeasured.** Reading is structurally cheaper than generating, but a trace is longer than a diff and the price ceiling is set by a bundled free reviewer and a thirty-dollar-a-seat paid one.
+5. **The incumbent ships it before the buyer builds it.** CodeRabbit owns the webhook, the merge gate, the ticket link and an in-harness reviewer sitting beside the trace file. GitHub owns the session log and the approval rule.
+6. **Independence is contested and the market is bundling against it.** Cursor acquired Graphite in December 2025; Sonar acquired Gitar in May 2026 explicitly to span from the moment an agent starts writing to the moment work lands (both secondary).
+7. **No measured buyer.** Nothing in the corpus shows an organization judging its existing reviewers insufficient. Evidence of stacking is configuration files, not procurement.
+8. **Evidence quality on the central claim.** Every CodeRabbit primary domain was blocked in this session, so "it does not read traces" is strongly indicated, not proven. A differentiator that cannot be verified cannot be sold against.
 
-## Next steps, before any market sizing
+## What would falsify what remains
 
-1. **Twenty interviews**: ten engineering leads who run agent fleets, ten finance or operations analysts who receive agent-produced reconciliations or reports. Ask what proof would let them stop checking, what they check today, and what a wrong "verified" would cost them.
-2. **A prototype in two pieces**: a stop hook plus MCP server that produces a check per pull request across two engines, and an Excel add-in that writes a provenance column for an agent-produced reconciliation.
-3. **A cost model from real traces**: cost per check against the price of the outcome it verifies, with the false-verified rate measured alongside.
-4. **The evaluation nobody has**: did the operator's task get done, at what cost, with how many interruptions and how much regret, built from the prototype's own corpus.
-5. **Then size the market**, with the first market chosen and the four numbers plus the false-verified rate in hand.
+- Trace-only defects are rare, or a sandbox catches most of them by re-execution. This is the test above and it is the decisive one.
+- CodeRabbit or GitHub ships trace-aware review, which either could do in a quarter.
+- Compliance buyers accept the platform's own session log as the audit trail, which is what it is being built to be.
+- Auditors treat an agent trace as unnecessary because they audit the output and the control, not the process.
 
 ## What this recommendation is not
 
-- Not a better chat app, a new browser, a device or a desktop app. All four have fresh corpses.
-- Not an engine, and not a control plane. Engines are free or rented; the control plane is the identity provider's.
-- Not "we learn the harness automatically" as a moat. The best independent evidence says learned harnesses overfit and transfer poorly [academic].
-- Not a claim that the CLI is dead. It is the engine, and developers keep it.
-- Not a claim that the authority problem is solved. It is real, it is being solved by the vendors and the identity providers divergently, and proof is how an outsider participates in it without owning the blast radius.
+- Not a code reviewer. That market has a $1.5B incumbent that does the job described.
+- Not a document or spreadsheet cite-checker. Those shipped in December 2025 and July 2026.
+- Not an engine, a control plane, a new surface, a device or a desktop app. Each was ruled out earlier and none of those rulings changed.
+- Not a claim that agent verification is unnecessary. It is necessary, largely served, and the unserved sliver may belong to the platform.
 
 ## What this means for the thesis
 
-Supports: the thesis survives as a design thesis (the outer harness is the bottleneck) and as a narrow business thesis (proof across engines and document surfaces). Contradicts: the broad version, a startup as the new default harness for everyone, does not survive the evidence, and neither does the intermediate version, a startup as the neutral control plane. Nuance: the vertical operator-configured harness remains the best-proven monetization in the corpus, and the verifier's second market may turn into one.
+The thesis survives only as a design thesis: the outer harness is the bottleneck, and the inner harness belongs to the model's owner. As a business thesis it has now failed twice under examination, once as a control layer and once as a verifier, and both times because the corpus was read as describing an empty space that was not empty. The honest position is that this research produced a good map of harnesses, a clear design principle, and no validated company. The next artifact should be a measurement, not another document.
 
 ## Open questions and unverified claims
 
-- Whether buyers value independence in a checker is inferred from separation-of-duties practice and from the labs' review products' design; it is not measured.
-- The review-time and session-per-engineer figures are vendor or via-secondary numbers recorded with their status in the developer document.
-- Cost per check has not been measured; the margin argument is structural until the prototype produces numbers.
+- Every CodeRabbit product fact is secondary; its primary domains were blocked.
+- The COSO requirement is multi-sourced but secondary.
+- AgentPM's size, funding and customers were not found.
+- No threshold for the trace-only defect rate is defensible from evidence; it must be set as a judgment before measurement.
