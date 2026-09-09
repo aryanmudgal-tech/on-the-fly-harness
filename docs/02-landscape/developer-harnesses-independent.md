@@ -460,3 +460,8 @@ cursor.com, cnbc.com, finance.yahoo.com, techcrunch.com, thenewstack.io, venture
 - The exact day of the Continue acquisition (June 16) and of the Composer 2 launch (March 18 or 19) differ between secondary sources.
 - Secondary sources describe Cursor's post-close home inconsistently (a "SpaceXAI" division versus xAI); the text says only "SpaceX's AI division".
 - The GitHub page fetches rendered current-year dates without a year; September 2026 is inferred from today's date and release content (GPT-6 support), consistent with the author's note in open question 9.
+
+
+## Coordinator's cross-document note (2026-09-09)
+
+The account above of Anthropic's third-party harness policy (credits announced May 13, 2026 for June 15) is the version reachable through search excerpts. The strategy document, `docs/07-strategy/value-capture.md` (section 5 and verification note 3e), fetched the OpenClaw provider documentation and records the later sequence: the June 15 credit change was paused on the day it was due, with such usage drawing on plan limits again; from July 13 third-party apps drew on "extra usage" rather than plan limits; and by September 3 detection of OpenClaw's prompt markers left subscription users without a model unless they bought extra-usage credit. Read the strategy document as authoritative on this timeline.

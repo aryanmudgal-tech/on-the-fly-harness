@@ -288,3 +288,8 @@ Tally: 64 claims checked; 39 confirmed, 22 corrected, 3 unverified.
 - "Have not claimed" for the chat and browser surfaces is the matrix's synthesis: the labs do ship chat fronts (channels, Slack, Crew), but for developer engines that assume a repository.
 - Star counts move daily; the 2026-09-09 readings agree with the rounded cells, but "about 122k" for Codex and the other figures will drift.
 - Everything in row 64 of the table stays unverified with the sources' own labels.
+
+
+## Coordinator's cross-document note (2026-09-09)
+
+The account above of Anthropic's third-party harness policy (credits announced May 13, 2026 for June 15) is the version reachable through search excerpts. The strategy document, `docs/07-strategy/value-capture.md` (section 5 and verification note 3e), fetched the OpenClaw provider documentation and records the later sequence: the June 15 credit change was paused on the day it was due, with such usage drawing on plan limits again; from July 13 third-party apps drew on "extra usage" rather than plan limits; and by September 3 detection of OpenClaw's prompt markers left subscription users without a model unless they bought extra-usage credit. Read the strategy document as authoritative on this timeline.

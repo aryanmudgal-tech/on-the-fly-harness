@@ -322,3 +322,8 @@ Three conventions turned context into a shared standard. **AGENTS.md** ([OpenAI,
 - OpenClaw star counts: ~68,000 by Feb 2 (CNBC) not re-checked; ~347,000 by April 2026 unverified; 389,231 on Sep 8, 2026 per the GitHub API.
 - 2022–2024 dates were not re-checked in this pass except the plugin shutdown and Google's MCP adoption; they match the primary sources listed.
 - Primary pages for Antigravity 2.0, Devin Desktop, Cowork, Managed Agents, Muse Code, the SpaceX–Cursor filings and the Manus order were identified but could not be opened; each is supported by at least two independent reports.
+
+
+## Coordinator's cross-document note (2026-09-09)
+
+The account above of Anthropic's third-party harness policy (credits announced May 13, 2026 for June 15) is the version reachable through search excerpts. The strategy document, `docs/07-strategy/value-capture.md` (section 5 and verification note 3e), fetched the OpenClaw provider documentation and records the later sequence: the June 15 credit change was paused on the day it was due, with such usage drawing on plan limits again; from July 13 third-party apps drew on "extra usage" rather than plan limits; and by September 3 detection of OpenClaw's prompt markers left subscription users without a model unless they bought extra-usage credit. Read the strategy document as authoritative on this timeline.

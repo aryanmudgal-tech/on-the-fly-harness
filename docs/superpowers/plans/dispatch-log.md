@@ -42,3 +42,8 @@ The 5-hour session limit stopped 12 of the 14 running agents; protocols research
 ## Session limit again at 00:2x, resumed 04:32 (2026-09-09)
 
 Four agents died with the 5-hour limit (matrix, and fact-checks for adoption, runtime and safety, non-technical users); the adoption refresh and the matrix draft had finished writing before they died. Relaunched at 04:32: fact-checks for runtime and safety, non-technical users and the matrix. The coordinator wrote the three synthesis documents and consolidated the sources meanwhile, then dispatched the red-team agent.
+
+
+## Complete, 2026-09-09
+
+All nineteen research documents verified with notes. The red team's critique (`docs/08-synthesis/04-red-team.md`) reversed the coordinator's first recommendation on the evidence; the three synthesis documents were rewritten, the response recorded, and cross-document notes added where the corpus disagreed with itself. Deliverables: the repository and a published report page.
