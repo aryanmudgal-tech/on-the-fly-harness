@@ -1,0 +1,230 @@
+<title>Reimagining the Agent Harness</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F5F6F3; --ink:#1B2422; --ink-2:#4B5754; --accent:#1F6F69; --accent-ink:#155A55;
+  --ochre:#9A6A1F; --rule:#D6DCD8; --panel:#E9EEEB; --panel-2:#DFE6E2; --link:#1F6F69;
+  --display:"Fraunces",Georgia,"Times New Roman",serif; --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif; --mono:"IBM Plex Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#101614; --ink:#E4EAE6; --ink-2:#A9B5B0; --accent:#62B8AE; --accent-ink:#8FD3CA;
+    --ochre:#D0A05A; --rule:#2A3532; --panel:#182220; --panel-2:#1F2B28; --link:#8FD3CA;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101614; --ink:#E4EAE6; --ink-2:#A9B5B0; --accent:#62B8AE; --accent-ink:#8FD3CA;
+  --ochre:#D0A05A; --rule:#2A3532; --panel:#182220; --panel-2:#1F2B28; --link:#8FD3CA;
+}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;margin:0}
+main{max-width:72ch;margin:0 auto;padding:48px 24px 80px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:2.6rem;font-variation-settings:"opsz" 120;letter-spacing:-0.01em}
+h2{font-size:1.6rem;margin-top:8px}
+h3{font-size:1.15rem;margin-top:4px}
+p{margin:0;max-width:68ch}
+a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:3px}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);margin:0}
+header{display:grid;gap:14px;padding-bottom:28px;border-bottom:1px solid var(--rule)}
+header .meta{font-family:var(--mono);font-size:.8rem;color:var(--ink-2)}
+section{display:grid;gap:16px;padding:36px 0;border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:0}
+ul,ol{margin:0;padding-left:1.25rem;display:grid;gap:10px}
+li{max-width:66ch}
+li b{font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+.tablewrap{overflow-x:auto}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--rule)}
+th{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.verdict{display:grid;gap:12px;background:var(--panel);padding:20px 22px;border-left:3px solid var(--accent)}
+.verdict p{max-width:none}
+.tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border:1px solid var(--rule);color:var(--ink-2);white-space:nowrap}
+.tag.strong{border-color:var(--accent);color:var(--accent-ink)}
+.tag.medium{border-color:var(--ochre);color:var(--ochre)}
+.grade{font-family:var(--mono);font-size:.78rem}
+figure{margin:0;display:grid;gap:10px}
+figcaption{font-size:.9rem;color:var(--ink-2);max-width:68ch}
+svg text{font-family:var(--mono);font-size:12.5px;fill:var(--ink)}
+svg .lbl{fill:var(--ink-2);font-size:11px;letter-spacing:.06em}
+svg .box{fill:var(--panel);stroke:var(--rule);stroke-width:1}
+svg .box.core{fill:var(--panel-2);stroke:var(--accent);stroke-width:1.5}
+svg .arrow{stroke:var(--ink-2);stroke-width:1.2;fill:none}
+svg .head{fill:var(--accent-ink);font-weight:500}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:640px){.two{grid-template-columns:1fr}h1{font-size:2.1rem}}
+.note{font-size:.92rem;color:var(--ink-2);max-width:68ch}
+.foot{font-family:var(--mono);font-size:.78rem;color:var(--ink-2);padding-top:28px}
+@media (prefers-reduced-motion: no-preference){a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<main>
+<header>
+  <p class="eyebrow">Research verdict · agent harnesses · 9 September 2026</p>
+  <h1>Reimagining the Agent Harness</h1>
+  <p>Nineteen research documents, each fact-checked by a second agent, tested one thesis: <em>as models get better, the harness becomes the bottleneck, and neither a CLI nor a desktop app can be the default way people operate agents.</em> This page is the verdict, the design that follows from it, and the startup recommendation. The full corpus, with every source and every claim's verification status, is in the <a href="https://github.com/aryanmudgal-tech/on-the-fly-harness/tree/claude/agent-harness-research-qqp24y">repository</a>.</p>
+  <p class="meta">Written for a software engineer new to agents · market sizing deliberately deferred · numbers carry their labels: <span class="tag">vendor</span> means the company that benefits reported it</p>
+</header>
+
+<section>
+  <p class="eyebrow">The answer in brief</p>
+  <div class="verdict">
+    <p><b>The thesis survives as a design thesis and fails as a broad business thesis.</b> A harness has two layers that move in opposite directions. The inner layer (the loop, prompts, scaffolds) is small in lines, large in leverage, and belongs to whoever owns the model. The outer layer (identity, permissions, verification, memory, cost, surfaces) is where every incident and every 2026 vendor investment lives. That layer is the bottleneck.</p>
+    <p><b>"Not a CLI" is already the industry's own position, for the surface.</b> Every lab runs one CLI-shaped engine behind many thin surfaces. The CLI became the engine, not the front door. Chat surfaces carry two orders of magnitude more people; developer surfaces lead on money and delegated autonomy. The desktop app is not dead: it is where the two largest labs put the window you approve things in.</p>
+    <p><b>For non-technical people, the part to reimagine is the trust model, not the body style.</b> Standalone new surfaces have the worst record in the corpus. Observed demand is thin, attended and document-shaped. Authority and reliability both bind; what nobody provides is a way to check the work without expertise. The neutral control plane is not open either: its pieces already ship, and the company that owns identity and the office suite already governs rival agents.</p>
+    <p><b>Recommendation: sell proof, not permission.</b> Build an independent verifier that plugs into every harness through its hooks and into the office suite through its add-ins, checks an agent's work from outside the harness that produced it, renders the proof where people already check work, never acts, holds no credentials, and prices per verified outcome. Developers first, the grid and the document second. The coordinator's first recommendation, a startup-owned authority layer, did not survive the red team; the reversal is on the record.</p>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">The thesis, scored</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Clause</th><th>Verdict</th><th>Strongest evidence</th></tr></thead>
+    <tbody>
+      <tr><td>The harness decides whether agents work</td><td>Supported, with a split: the outer layer is where incidents, spend and value sit; the inner layer is small in lines but not in leverage, and belongs to the model owner</td><td>A 100-line bash-only agent scores over 74% on SWE-bench Verified, yet one team moved 52.8% to 66.5% on Terminal-Bench 2.0 by changing only its harness; the labs spent 2026 on sandboxes, identities, meters and classifier permissions</td></tr>
+      <tr><td>Better models make the harness the bottleneck</td><td>Half right: better models absorb inner-harness compensations and expose the outer layer; reliability itself is still model-side and still binding</td><td>Compaction became an API header and permission prompts a classifier; the best model passes 50.3% of Zapier's 600 business tasks; incidents cluster in permissions and read boundaries</td></tr>
+      <tr><td>Neither a CLI nor a desktop app can be the default surface</td><td>Half right: the CLI is the engine; the desktop app is where the largest labs converged as the client of a cloud runtime</td><td>About 1B weekly ChatGPT users against roughly 10M for the largest coding agent (vendor); Codex merged into the ChatGPT desktop app in July 2026 and grew fastest after</td></tr>
+      <tr><td>The default harness must be reimagined for non-technical people</td><td>True for the trust model, not the surface; demand is thin, attended and document-shaped</td><td>Seven vendors, seven approval models; users approve most prompts (vendor); students report regret at agents that acted beyond what they would have authorized; the top matched tasks are search, reference questions and editing</td></tr>
+      <tr><td>A startup can define the new default</td><td>Not for a general harness, and not for a neutral control plane; the openings are verification and vertical operator-configured harnesses</td><td>Four standalone developer harnesses died or were absorbed in six months of 2026; Anthropic's third-party terms changed five times in eight months; Microsoft's governance already discovers OpenClaw, Copilot CLI and Claude Code</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <p class="eyebrow">The two layers</p>
+  <figure>
+    <svg viewBox="0 0 760 500" role="img" aria-label="Diagram: surfaces sit above the vendor engine with its own controls; the organization's identity provider holds authority; an independent verification layer reads hook events, traces and artifacts and renders proof; runtime is rented">
+      <text x="20" y="26" class="lbl">SURFACES, WHEREVER THE PERSON ALREADY IS</text>
+      <rect x="20" y="36" width="140" height="40" class="box"/><text x="30" y="61">chat apps</text>
+      <rect x="170" y="36" width="140" height="40" class="box"/><text x="180" y="61">office suite</text>
+      <rect x="320" y="36" width="140" height="40" class="box"/><text x="330" y="61">OS assistant</text>
+      <rect x="470" y="36" width="140" height="40" class="box"/><text x="480" y="61">pull request</text>
+      <rect x="620" y="36" width="120" height="40" class="box"/><text x="630" y="61">terminal</text>
+      <path d="M380 76 L380 104" class="arrow"/><path d="M374 96 L380 104 L386 96" class="arrow"/>
+      <rect x="20" y="108" width="720" height="96" class="box"/>
+      <text x="34" y="132" class="head">VENDOR ENGINE AND ITS OWN CONTROLS · rented · Claude Code, Codex, Cowork, Copilot, open harnesses</text>
+      <text x="34" y="158">loop · prompts · tool catalog · classifier-gated permissions · budgets</text>
+      <text x="34" y="182">hooks and traces: the observation points an outsider can use</text>
+      <path d="M180 204 L180 236" class="arrow"/><path d="M174 228 L180 236 L186 228" class="arrow"/>
+      <text x="192" y="226" class="lbl">identity, grants, tenant policy</text>
+      <path d="M560 204 L560 236" class="arrow"/><path d="M554 228 L560 236 L566 228" class="arrow"/>
+      <text x="572" y="226" class="lbl">hook events, traces, artifacts</text>
+      <rect x="20" y="240" width="330" height="150" class="box"/>
+      <text x="34" y="264" class="head">ORGANIZATION'S AUTHORITY</text>
+      <text x="34" y="288">identity provider · suite admin</text>
+      <text x="34" y="312">who the agent is · what it may reach</text>
+      <text x="34" y="336">spend caps · sign-off rules</text>
+      <text x="34" y="360" class="lbl">EXISTS: ENTRA, COWORK RBAC, MANAGED MCP AUTH</text>
+      <rect x="380" y="240" width="360" height="150" class="box core"/>
+      <text x="394" y="264" class="head">INDEPENDENT VERIFICATION LAYER</text>
+      <text x="394" y="288">reads everything · acts on nothing</text>
+      <text x="394" y="312">proof per task: claims to sources, checks run,</text>
+      <text x="394" y="336">what changed, actions by consequence class,</text>
+      <text x="394" y="360">what could not be verified · rendered into</text>
+      <text x="394" y="384">the grid, the document, the pull request</text>
+      <path d="M380 390 L380 424" class="arrow"/><path d="M374 416 L380 424 L386 416" class="arrow"/>
+      <rect x="20" y="428" width="720" height="56" class="box"/>
+      <text x="34" y="452" class="head">RUNTIME · rented · interchangeable</text>
+      <text x="34" y="474">cloud or local sandbox · credential-holding egress proxy · durable sessions</text>
+    </svg>
+    <figcaption>The engine is the vendor's. Authority is the organization's, administered through the identity provider and the suite. The independent layer is what an outsider can own: proof, delivered where checking already happens. The runtime is rented. The first version of this design put a startup-owned authority layer in the middle; the corpus showed its pieces already ship and its seat is taken.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <p class="eyebrow">Eleven findings</p>
+  <ol>
+    <li><b>The harness is two layers that move in opposite directions, and the inner one belongs to the model's owner.</b> Small in lines, large in leverage: use the vendor's default, re-simplify on upgrades, never make it a moat.</li>
+    <li><b>"One runtime, many surfaces" is the settled shape.</b> Anthropic's docs: each surface connects to the same engine. Codex is one Rust core under a CLI, an IDE, a desktop app and a cloud. Open harnesses reached hundreds of thousands of stars in weeks.</li>
+    <li><b>Standalone new surfaces have the worst record; embedded surfaces have the revenue.</b> Operator, Atlas, Project Mariner, Humane, Dia, Manus and Poke were folded, sold, stalled or shut within a year; Agentforce, ServiceNow, Glean and Copilot live inside tools people already use.</li>
+    <li><b>Non-technical delegation is thin, attended and document-shaped; authority and reliability both bind.</b> Seventy-six percent of Claude conversations match non-computing tasks, mostly search, reference and editing; the best model passes half of Zapier's business tasks; "a strategy memo doesn't compile."</li>
+    <li><b>Approvals are divergent across vendors, and policy is centralizing in the identity provider.</b> Dust's tool stakes, MCP's risk annotations, Scout's sign-off, Cowork's spend caps exist; what does not travel is per-person policy across vendors, and the identity provider is its natural owner.</li>
+    <li><b>Security failures are structural and cluster where the agent reads untrusted content.</b> The defenses that hold are an OS boundary, a credential-holding proxy, a second model, and breaking the trifecta per task. A component that never acts carries no blast radius.</li>
+    <li><b>The labs hold the meter and rewrite the terms.</b> Cursor's gross margin was negative until it shipped its own models; Anthropic's third-party terms changed five times in eight months, ending with the largest third-party harness cut off again in September.</li>
+    <li><b>Protocols separated surface from runtime; the labs own the tool and agent protocols, not the interface ones.</b> Hooks with near-identical event names in every harness are the cheapest place for an outsider to observe every action.</li>
+    <li><b>Automated harness design is real, overfits, and the layer that matters has no benchmark of the operator's own work.</b> Learned harnesses transfer about 0.6 points in the best independent test; business-task benchmarks exist, but nothing measures the operator's own task on the operator's own data.</li>
+    <li><b>Generated interfaces are an output surface; the spreadsheet is the verification surface that already works.</b> The office suite went agentic in April and May 2026; the grid is where a non-expert can check work cell by cell.</li>
+    <li><b>Background execution is the real surface shift; interruption policy is thin and its evidence is anecdotal.</b> The loop left the foreground; one withdrawn product with an unstated cause is not a natural experiment.</li>
+  </ol>
+</section>
+
+<section>
+  <p class="eyebrow">The reimagined harness, part by part</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Part</th><th>What it becomes</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td>Loop</td><td>The vendor's, never regenerated: use the tested default, re-simplify on upgrades, keep a baseline for postmortems</td><td><span class="tag strong">strong</span></td></tr>
+      <tr><td>Tools</td><td>The vendor's catalog, read through one consequence vocabulary built from MCP annotations and Dust-style stakes; unannotated actions recorded as a finding</td><td><span class="tag medium">medium</span></td></tr>
+      <tr><td>Context and memory</td><td>The organization's record, read-only by default, treated as an injection sink; the layer keeps only verification records</td><td><span class="tag medium">medium</span></td></tr>
+      <tr><td>Permissions and safety</td><td>Owned by the vendor and the identity provider; the outsider describes every run by consequence class and principal, and gates only on local harnesses where a hook exists, tightening never loosening</td><td><span class="tag strong">strong problem</span> <span class="tag medium">medium description</span></td></tr>
+      <tr><td>Runtime</td><td>Rented, with the constraints named: no zero-data-retention on Managed Agents, terms that changed five times in eight months; a layer that only reads runs wherever the customer's data policy allows</td><td><span class="tag strong">strong</span></td></tr>
+      <tr><td>Surface</td><td>The grid, the document and the pull request as review surfaces; generated views only for what the grid cannot show; requests enter through individual channels, never a shared room</td><td><span class="tag medium">medium</span></td></tr>
+      <tr><td>Orchestration</td><td>The vendor's workflows and interruption controls; one proof per run; an independent check per pull request that the organization can make a merge requirement</td><td><span class="tag medium">medium</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Every authority component has an owner already (directory identities, tool stakes, spend caps, classifier-gated approvals). What an outsider can own is the normalized vocabulary, the independent proof, provenance rendered into the office suite, and the corpus of verified and unverified artifacts that no evaluation covers today.</p>
+</section>
+
+<section>
+  <p class="eyebrow">Recommendation</p>
+  <p>Build the independent verifier. It runs as a stop hook and an MCP server inside every harness and as an add-in in Excel, Word and Outlook. It takes the task, the artifact and the trace and returns proof: claims tied to sources, checks run, what changed, actions taken by consequence class, what could not be verified. It never acts, holds no credentials, stores no organizational memory and owns no surface. Developers first (a budget, a review bottleneck, a countable unit, hooks that exist today); the spreadsheet and the document second (reconciliations, reports and records, where claims tie to rows and nobody offers proof); judgment-heavy documents last. A vertical operator-configured harness is the fallback if the verifier hypothesis fails.</p>
+  <div class="two">
+    <div>
+      <h3>Why a lab would not just do this</h3>
+      <ul>
+        <li>Conflict of interest: a first-party check is graded on the same outcomes as the generator, and the labs' review products are built not to block a merge.</li>
+        <li>Independence is the one judgment property the producer cannot absorb without ceasing to be independent.</li>
+        <li>Even Microsoft's own stack is two-party: Copilot Cowork runs on another lab's models.</li>
+        <li>What this does not do: stop a lab from bundling a good-enough check and winning on distribution, as happened to browsers and orchestrators.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Risks, in order</h3>
+      <ul>
+        <li>Gross margin: a check reads once and does not fan out, but a full-trace review is not free; the only public code-review price is a vendor's own, at $15 to $25.</li>
+        <li>A crowded first market: the labs' reviewers and funded startups; independence and the cross-engine corpus must carry the difference.</li>
+        <li>The buyer can build a hook and a model call; the corpus, the calibrated evaluation and the integrations are the defense.</li>
+        <li>Models check themselves well enough that review disappears rather than moves; vendors close the observation points.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">Next, before any market sizing: twenty interviews (engineering leads who run agent fleets; finance and operations analysts who receive agent-produced reconciliations); a prototype in two pieces (a hook-plus-MCP check per pull request across two engines; an Excel add-in that writes a provenance column); a cost per check and a false-verified rate from real traces; the evaluation of real outcomes nobody has.</p>
+</section>
+
+<section id="redteam">
+  <p class="eyebrow">Red team</p>
+  <p>An adversarial reviewer agent was asked to find where the synthesis is wrong. Its critique and the coordinator's response are in the repository at <a href="https://github.com/aryanmudgal-tech/on-the-fly-harness/blob/claude/agent-harness-research-qqp24y/docs/08-synthesis/04-red-team.md">docs/08-synthesis/04-red-team.md</a>.</p>
+  <p class="note" id="redteam-summary">Its verdict: the corpus was better than the synthesis built on it. It showed that the first recommendation reported the friendlier of two accounts of Anthropic's third-party policy, called existing designs new, proposed a control layer that cannot enforce on hosted engines and holds the blast radius, ignored gross margin, and inverted the strategy document's own ranking. Its alternative, an independent verifier, was better supported by the same evidence, and the coordinator adopted it. Three items were pushed back on: the buyer-can-build argument applies less to a calibrated corpus than to a hook and a model call; the evaluation kept is a measurement of real outcomes, not a leaderboard; and the developer first market is more crowded than the alternative allowed, which is now the second-named risk.</p>
+</section>
+
+<section>
+  <p class="eyebrow">The corpus and how far to trust it</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Document</th><th>Claims checked</th><th>Confirmed</th><th>Corrected</th><th>Unverified</th></tr></thead>
+    <tbody>
+      <tr><td>Primer: anatomy of a harness</td><td class="num">41</td><td class="num">33</td><td class="num">6</td><td class="num">2</td></tr>
+      <tr><td>Primer: history 2022 to 2026</td><td class="num">23</td><td class="num">18</td><td class="num">4</td><td class="num">1</td></tr>
+      <tr><td>Developer harnesses: labs</td><td class="num">39</td><td class="num">25</td><td class="num">8</td><td class="num">6</td></tr>
+      <tr><td>Developer harnesses: independents</td><td class="num">33</td><td class="num">24</td><td class="num">3</td><td class="num">6</td></tr>
+      <tr><td>Developer harness matrix</td><td class="num">64</td><td class="num">39</td><td class="num">22</td><td class="num">3</td></tr>
+      <tr><td>Non-technical surfaces: big vendors</td><td class="num">53</td><td class="num">31</td><td class="num">7</td><td class="num">13</td></tr>
+      <tr><td>Non-technical surfaces: startups and suites</td><td class="num">39</td><td class="num">25</td><td class="num">8</td><td class="num">6</td></tr>
+      <tr><td>Adoption evidence</td><td class="num" colspan="4">verified with notes; the checker's report was lost to a usage limit, counts are in the document</td></tr>
+      <tr><td>Protocols and standards</td><td class="num">36</td><td class="num">21</td><td class="num">8</td><td class="num">7</td></tr>
+      <tr><td>Runtime, safety and infrastructure</td><td class="num">25</td><td class="num">15</td><td class="num">8</td><td class="num">2</td></tr>
+      <tr><td>Academic research</td><td class="num">29</td><td class="num">20</td><td class="num">5</td><td class="num">4</td></tr>
+      <tr><td>Industry engineering writing</td><td class="num">39</td><td class="num">19</td><td class="num">16</td><td class="num">4</td></tr>
+      <tr><td>Surface: messaging</td><td class="num">25</td><td class="num">14</td><td class="num">5</td><td class="num">6</td></tr>
+      <tr><td>Surface: browser with generated UI</td><td class="num">37</td><td class="num">20</td><td class="num">7</td><td class="num">10</td></tr>
+      <tr><td>Surface: voice and ambient</td><td class="num">30</td><td class="num">20</td><td class="num">4</td><td class="num">6</td></tr>
+      <tr><td>Surface: OS-level</td><td class="num">15</td><td class="num">8</td><td class="num">7</td><td class="num">0</td></tr>
+      <tr><td>Users: developers</td><td class="num">23</td><td class="num">13</td><td class="num">1</td><td class="num">14</td></tr>
+      <tr><td>Users: non-technical</td><td class="num">31</td><td class="num">29</td><td class="num">6</td><td class="num">6</td></tr>
+      <tr><td>Strategy: value capture</td><td class="num">44</td><td class="num">32</td><td class="num">9</td><td class="num">3</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">"Corrected" counts are a feature, not a flaw: the drafts were written fast from a stale training cutoff and a shared, rate-limited web search, and the second pass fixed dates, restored verbatim quotations and re-attributed figures. Two constraints shaped the evidence: the session's network policy blocked most primary sites (the labs' blogs, arXiv, Wikipedia, the press), so many claims were confirmed through two or more independent search excerpts and GitHub-hosted mirrors; and the web-search allowance was shared across agents and ran out repeatedly. Each document lists what could not be opened. Vendor figures are labeled as such throughout.</p>
+</section>
+
+<p class="foot">Repository: aryanmudgal-tech/on-the-fly-harness, branch claude/agent-harness-research-qqp24y · 19 research documents · 1,209 numbered sources · synthesis in docs/08-synthesis</p>
+</main>

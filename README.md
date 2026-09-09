@@ -12,6 +12,8 @@ Written for a software engineer who is new to agents: concepts get an analogy fi
 - **The neutral control plane is not open.** Its pieces already ship (per-agent identities, tool stakes, spend caps, classifier-gated approvals), the labs are routing policy to the organization's identity provider, and the company that owns identity and the office suite already governs rival agents.
 - **The recommendation is to sell proof, not permission.** Build an independent verifier that plugs into every harness through its hooks and into the office suite through its add-ins, checks an agent's work from outside the harness that produced it, renders the proof where people already check work (the pull request, the grid, the document), never acts and holds no credentials, and prices per verified outcome. Developers first, the spreadsheet and the document second, a vertical operator-configured harness as the fallback. This is the position the red team argued for; the coordinator's first recommendation, a startup-owned authority layer, did not survive the evidence, and the record of that reversal is in the repository.
 
+A one-page version of the verdict is published at https://claude.ai/code/artifact/1d2a89a9-c5cb-4ccd-ad02-f48930c19689 (source in `docs/report.html`).
+
 ## How to read this repository in thirty minutes
 
 1. `docs/08-synthesis/01-findings.md`: eleven findings and ten principles, each cited to the research.
@@ -63,3 +65,4 @@ Every document has a TL;DR, a "What this means for the thesis" section that stat
 | `docs/08-synthesis/` | Findings, design, recommendation, red team |
 | `docs/sources.md` | Consolidated bibliography |
 | `docs/superpowers/` | Design spec, execution plan, research brief template, dispatch log |
+| `docs/report.html` | Source of the published one-page report |
